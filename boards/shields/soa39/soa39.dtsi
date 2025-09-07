@@ -110,18 +110,18 @@
     root_animation: animation_0 {
         compatible = "zmk,animation-control";
         label = "ANIMATION_CTRL_0";
-        powered-animations = <&layer_status>;
+        powered-animations = <&animation_layer_status>;
         battery-animations = <&empty_animation>;
-        behavior-animations = <&layer_status>;
+        behavior-animations = <&animation_layer_status>;
         init-animation = <&init_animation>;
-        activation-animation = <&layer_status>;
+        activation-animation = <&animation_layer_status>;
         activation-animation-duration-ms = <1000>;
         ext-power = <&led_power>;
     };
 
     init_animation: init_animation {
         compatible = "zmk,animation-compose";
-        animations = <&layer_status &black_animation &layer_status>;
+        animations = <&animation_layer_status &black_animation &animation_layer_status>;
         durations-ms = <1000 200 1000>;
     };
 
@@ -134,20 +134,6 @@
     empty_animation: empty_animation {
         compatible = "zmk,animation-empty";
         status = "okay";
-    };
-
-    layer_status: layer_status {
-        compatible = "zmk,animation-layer-status";
-        status = "okay";
-        pixels = <0>;
-        default-color = <HSL(240, 100, 50)>;
-        colors = <
-            HSL(0, 0, 50)
-            HSL(193, 100, 47)
-            HSL(0, 100, 40)
-            HSL(60, 100, 50)
-            HSL(120, 100, 50)
-        >;
     };
 
     animation: animation {
@@ -209,4 +195,16 @@
         spi-zero-frame = <0x40>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
     };
+};
+
+&animation_layer_status {
+    pixels = <0>;
+    default-color = <HSL(240, 100, 50)>;
+    colors = <
+        HSL(0, 0, 50)
+        HSL(193, 100, 47)
+        HSL(0, 100, 40)
+        HSL(60, 100, 50)
+        HSL(120, 100, 50)
+    >;
 };
