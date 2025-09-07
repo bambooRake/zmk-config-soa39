@@ -31,5 +31,13 @@ manifest:
       remote: cormoran
       path: external/zmk-driver-animation
       clone-depth: 1
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      path: external/zmk-feature-default-layer
+      clone-depth: 1
+    - name: zmk-driver-ext-power-transient
+      remote: cormoran
+      path: external/zmk-driver-ext-power-transient
+      clone-depth: 1
   self:
     path: config
