@@ -1,6 +1,7 @@
 #include <behaviors/default_layer.dtsi>
 #include <behaviors/animation_trigger.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/input/input-event-codes.h>
 #include <dt-bindings/led/led.h>
 #include <dt-bindings/zmk_driver_animation/animation_control.h>
 #include <dt-bindings/zmk_driver_animation/animation_trigger.h>
@@ -20,8 +21,11 @@
     animation: animation {
         compatible = "zmk,animation";
         drivers = <&led_strip>;
-        pixels = <&pixel 0 0>;
-        chain-lengths = <1>;
+        pixels = <&pixel 0 0>,
+            <&pixel 1 0>,
+            <&pixel 2 0>,
+            <&pixel 3 0>;
+        chain-lengths = <4>;
     };
 
     animations {
@@ -43,7 +47,7 @@
         };
         /omit-if-no-ref/ black_animation: black {
             compatible = "zmk,animation-solid";
-            pixels = <0>;
+            pixels = <0 1 2 3>;
             colors = <HSL(0, 0, 0)>;
         };
 
@@ -54,19 +58,19 @@
         /omit-if-no-ref/ rainbow_animation: rainbow {
             compatible = "zmk,animation-solid";
             status = "okay";
-            pixels = <0>;
+            pixels = <0 1 2 3>;
             colors = <HSL(0, 100, 50) HSL(60, 100, 50) HSL(120, 100, 50) HSL(180, 100, 50) HSL(240, 100, 50) HSL(300, 100, 50)>;
         };
         /omit-if-no-ref/ red_animation: red {
             compatible = "zmk,animation-solid";
             status = "okay";
-            pixels = <0>;
+            pixels = <0 1 2 3>;
             colors = <HSL(0, 100, 50)>;
         };
         /omit-if-no-ref/ endpoint_status_animation: endpoint_status {
             compatible = "zmk,animation-endpoint";
             status = "okay";
-            pixels = <0>;
+            pixels = <0 1 2 3>;
             color-open = <HSL(60, 100, 50)>;
             color-connected = <HSL(240, 100, 50)>;
             color-disconnected = <HSL(0, 100, 50)>;
@@ -75,7 +79,7 @@
         /omit-if-no-ref/ battery_status_animation: battery_status {
             compatible = "zmk,animation-battery-status";
             status = "okay";
-            pixels = <0>;
+            pixels = <0 1 2 3>;
             color-high = <HSL(120, 100, 50)>; // green
             color-middle = <HSL(60, 100, 50)>; // yellow
             color-low = <HSL(0, 100, 50)>; // red
@@ -155,8 +159,8 @@
                 , <&xiao_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
                 ;
     };
-
-    led_power: led_power {
+    
+    led_power:led_power {
         compatible = "zmk,ext-power-transient";
         control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>; // NFC1
     };
@@ -177,23 +181,9 @@
 
 };
 
-&adc {
-    status = "okay";
-};
-
-
-&spi0 {
-    status = "disabled";
-
-    trackball: trackball@0 {
-        status = "disabled";
-        reg = <0>;
-    };
-};
-
 // Use NFC pins as GPIOs
 &uicr {
-    nfct-pins-as-gpios;
+	nfct-pins-as-gpios;
 };
 
 //
@@ -237,7 +227,7 @@
         //                 8bit is because this driver builds 1frame with 8bit (spi-one-frame, spi-zero-frame)
         spi-max-frequency = <4000000>; // 4MHz = 0.25us
 
-        chain-length = <1>; /* number of LEDs */
+        chain-length = <4>; /* number of LEDs */
         spi-one-frame = <0x70>;  // 01110000 -> T1H = 0.25 * 3 = 0.75us is between 0.58 and 1.0
         spi-zero-frame = <0x40>; // 01000000 -> T0H = 0.25us is between 0.2 and 0.4
         color-mapping = <LED_COLOR_ID_GREEN
@@ -247,7 +237,7 @@
 };
 
 &animation_layer_status {
-    pixels = <0>;
+    pixels = <0 1 2 3>;
     default-color = <HSL(240, 100, 50)>;
     // default
     // windows blue
@@ -265,6 +255,20 @@
 
 &zip_temp_layer {
     require-prior-idle-ms = <100>;
+};
+
+&adc {
+    status = "okay";
+};
+
+
+&spi0 {
+    status = "disabled";
+
+    trackball: trackball@0 {
+        status = "disabled";
+        reg = <0>;
+    };
 };
 
 
