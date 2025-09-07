@@ -19,9 +19,6 @@ manifest:
     - name: zmk-pmw3610-driver
       remote: gohanda11
       revision: main
-    - name: zmk-rgbled-widget
-      remote: gohanda11
-      revision: main
     - name: zmk-driver-animation
       remote: cormoran
       revision: main
