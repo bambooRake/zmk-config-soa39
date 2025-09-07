@@ -44,6 +44,19 @@
 
 &xiao_serial { status = "disabled"; };
 
+// 右手側LED設定を有効化
+&spi3 {
+    status = "okay";
+};
+
+&led_power {
+    status = "okay";
+};
+
+&led_strip {
+    status = "okay";
+};
+
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
