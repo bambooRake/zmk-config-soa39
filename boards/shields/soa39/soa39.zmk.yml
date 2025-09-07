@@ -1,0 +1,8 @@
+file_format: "1"
+id: soa39
+name: Soa39
+type: shield
+url: https://github.com/gohanda11/zmk-config-soa39
+requires: [seeeduino_xiao_ble]
+features:
+  - keys

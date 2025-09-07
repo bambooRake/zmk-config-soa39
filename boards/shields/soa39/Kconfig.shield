@@ -1,0 +1,5 @@
+config SHIELD_SOA39_R
+    def_bool $(shields_list_contains,soa39_R)
+
+config SHIELD_SOA39_L
+    def_bool $(shields_list_contains,soa39_L)

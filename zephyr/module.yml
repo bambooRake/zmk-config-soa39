@@ -1,0 +1,4 @@
+name: soa39
+build:
+  settings:
+    board_root: .
