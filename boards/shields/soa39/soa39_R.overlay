@@ -44,7 +44,7 @@
 
 &xiao_serial { status = "disabled"; };
 
-// 右手側ではLEDを無効化
+// 右手側ではLEDとアニメーションを無効化
 &spi3 {
     status = "disabled";
 };
@@ -54,6 +54,10 @@
 };
 
 &led_strip {
+    status = "disabled";
+};
+
+&animation {
     status = "disabled";
 };
 
