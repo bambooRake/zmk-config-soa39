@@ -14,6 +14,11 @@
     chosen {
         zmk,led-widgets-dev = <&led_strip>;
     };
+
+    led_power: led_power {
+        compatible = "zmk,ext-power-transient";
+        control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+    };
 };
 
 &pinctrl {
@@ -28,25 +33,6 @@
             psels = <NRF_PSEL(SPIM_MOSI, 0, 19)>;
             low-power-enable;
         };
-    };
-};
-
-/ {
-    leds {
-        compatible = "gpio-leds";
-        led_en: led_en {
-            gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
-            label = "LED Enable";
-        };
-    };
-};
-
-&gpio0 {
-    led_enable_hog {
-        gpio-hog;
-        gpios = <15 GPIO_ACTIVE_HIGH>;
-        output-high;
-        line-name = "led-enable";
     };
 };
 
