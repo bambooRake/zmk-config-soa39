@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/sekigon-gonnoc
     - name: gohanda11
       url-base: https://github.com/gohanda11
+    - name: cormoran
+      url-base: https://github.com/cormoran
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -19,6 +21,9 @@ manifest:
       revision: main
     - name: zmk-rgbled-widget
       remote: gohanda11
+      revision: main
+    - name: zmk-driver-animation
+      remote: cormoran
       revision: main
   self:
     path: config
