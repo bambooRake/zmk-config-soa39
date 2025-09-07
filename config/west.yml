@@ -19,9 +19,6 @@ manifest:
     - name: zmk-pmw3610-driver
       remote: gohanda11
       revision: main
-    - name: zmk-driver-animation
-      remote: cormoran
-      revision: main
     - name: zmk-driver-ext-power-transient
       remote: cormoran
       revision: main
