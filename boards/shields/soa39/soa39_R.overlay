@@ -44,18 +44,19 @@
 
 &xiao_serial { status = "disabled"; };
 
-// 右手側LED設定を有効化
+// 右手側ではLEDを無効化
 &spi3 {
-    status = "okay";
+    status = "disabled";
 };
 
 &led_power {
-    status = "okay";
+    status = "disabled";
 };
 
 &led_strip {
-    status = "okay";
+    status = "disabled";
 };
+
 
 &spi0 {
     status = "okay";
