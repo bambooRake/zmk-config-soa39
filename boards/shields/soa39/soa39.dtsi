@@ -14,6 +14,7 @@
 
     root_animation:animation_0 {
         compatible = "zmk,animation-control";
+        label = "ANIMATION_CTRL_0";
         powered-animations = <&endpoint_status>;
         battery-animations = <&empty_animation>;
         behavior-animations = <&battery_status &endpoint_status>;
