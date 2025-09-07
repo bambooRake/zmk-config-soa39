@@ -99,7 +99,7 @@
 
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
-        control-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+        control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
     };
 
 
@@ -112,13 +112,13 @@
 &pinctrl {
     spi3_default: spi3_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 15)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 19)>;
         };
     };
 
     spi3_sleep: spi3_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 15)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 19)>;
             low-power-enable;
         };
     };
@@ -148,11 +148,11 @@
         reg = <0>;
         spi-max-frequency = <4000000>;
 
-        /* WS2812 */
+        /* SK6812 - RGBW LED */
         chain-length = <1>; /* 1 LED */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
-        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE LED_COLOR_ID_WHITE>;
     };
 };
 
