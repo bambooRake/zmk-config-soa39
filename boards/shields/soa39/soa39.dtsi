@@ -15,9 +15,9 @@
         zmk,animation-control = &root_animation;
     };
 
-    root_animation:animation_0 {
+    root_animation:anim {
         compatible = "zmk,animation-control";
-        label = "ANIMATION_CTRL_0";
+        label = "A0";
         powered-animations = <&endpoint_status>;
         battery-animations = <&empty_animation>;
         behavior-animations = <&battery_status &endpoint_status &animation_layer_status>;
