@@ -39,6 +39,7 @@
             low-power-enable;
         };
     };
+};
 
 &xiao_serial { status = "disabled"; };
 
