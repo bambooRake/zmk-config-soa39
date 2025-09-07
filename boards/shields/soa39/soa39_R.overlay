@@ -44,25 +44,6 @@
 
 &xiao_serial { status = "disabled"; };
 
-// 右手側ではLEDとアニメーションを無効化
-&spi3 {
-    status = "disabled";
-};
-
-&led_power {
-    status = "disabled";
-};
-
-&led_strip {
-    status = "disabled";
-};
-
-// animation システムは有効にしつつ、animation_layer_statusは設定
-&animation_layer_status {
-    // 右手側では表示なし（LEDが物理的に無効化されているため）
-    pixels = <>;
-};
-
 
 &spi0 {
     status = "okay";
