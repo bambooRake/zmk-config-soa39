@@ -1,4 +1,7 @@
 // Board-specific overlay for Seeeduino Xiao BLE with soa39 shield
+#include <dt-bindings/led/led.h>
+#include <dt-bindings/zmk_driver_animation/animation_control.h>
+#include <dt-bindings/zmk_driver_animation/animation_trigger.h>
 
 // Enable NFCT pins as GPIO
 &pinctrl {
@@ -41,11 +44,62 @@
 
 / {
     chosen {
-        zmk,led-widgets-dev = <&led_strip>;
+        zmk,animation = &root_animation;
+        zmk,animation-control = &root_animation;
     };
 
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
         control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+    };
+
+    root_animation: animation_0 {
+        compatible = "zmk,animation-control";
+        label = "ANIMATION_CTRL_0";
+        powered-animations = <&layer_status>;
+        battery-animations = <&empty_animation>;
+        behavior-animations = <&layer_status>;
+        init-animation = <&init_animation>;
+        activation-animation = <&layer_status>;
+        activation-animation-duration-ms = <1000>;
+        ext-power = <&led_power>;
+    };
+
+    init_animation: init_animation {
+        compatible = "zmk,animation-compose";
+        animations = <&layer_status &black_animation &layer_status>;
+        durations-ms = <1000 200 1000>;
+    };
+
+    black_animation: black_animation {
+        compatible = "zmk,animation-solid";
+        pixels = <0>;
+        colors = <HSL(0, 0, 0)>;
+    };
+
+    empty_animation: empty_animation {
+        compatible = "zmk,animation-empty";
+        status = "okay";
+    };
+
+    layer_status: layer_status {
+        compatible = "zmk,animation-layer-status";
+        status = "okay";
+        pixels = <0>;
+        default-color = <HSL(240, 100, 50)>;
+        colors = <
+            HSL(0, 0, 50)
+            HSL(193, 100, 47)
+            HSL(0, 100, 40)
+            HSL(60, 100, 50)
+            HSL(120, 100, 50)
+        >;
+    };
+
+    animation: animation {
+        compatible = "zmk,animation";
+        drivers = <&led_strip>;
+        pixels = <&pixel 0 0>;
+        chain-lengths = <1>;
     };
 };
