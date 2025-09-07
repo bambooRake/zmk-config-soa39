@@ -1,17 +1,11 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
-#include <dt-bindings/zmk_driver_animation/animation_control.h>
-#include <dt-bindings/zmk_driver_animation/animation_trigger.h>
-#include <zmk_driver_animation/animation.dtsi>
-#include <zmk_driver_animation/animation_layer_status.dtsi>
 #include <physical_layouts.dtsi>
 
 / {
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        zmk,animation = &root_animation;
-        zmk,animation-control = &root_animation;
     };
 
     soa39_physical_layout: soa39_physical_layout {
@@ -107,42 +101,6 @@
         control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
     };
 
-    root_animation:animation_0 {
-        compatible = "zmk,animation-control";
-        label = "ANIMATION_CTRL_0";
-        powered-animations = <&animation_layer_status>;
-        battery-animations = <&empty_animation>;
-        behavior-animations = <&animation_layer_status>;
-        init-animation = <&init_animation>;
-        activation-animation = <&animation_layer_status>;
-        activation-animation-duration-ms = <1000>;
-        ext-power = <&led_power>;
-    };
-
-    init_animation:init_animation {
-        compatible = "zmk,animation-compose";
-        animations = <&animation_layer_status &black_animation &animation_layer_status>;
-        durations-ms = <1000 200 1000>;
-    };
-
-    black_animation:black_animation {
-        compatible = "zmk,animation-solid";
-        pixels = <0>;
-        colors = <HSL(0, 0, 0)>;
-    };
-
-    empty_animation:empty_animation {
-        compatible = "zmk,animation-empty";
-        status = "okay";
-    };
-
-    animation: animation {
-        compatible = "zmk,animation";
-        drivers = <&led_strip>;
-        pixels = <&pixel 0 0>;
-        chain-lengths = <1>;
-    };
-
 
 };
 
@@ -197,14 +155,3 @@
     };
 };
 
-&animation_layer_status {
-    pixels = <0>;
-    default-color = <HSL(240, 100, 50)>;
-    colors = <
-        HSL(0, 0, 50)
-        HSL(193, 100, 47)
-        HSL(0, 100, 40)
-        HSL(60, 100, 50)
-        HSL(120, 100, 50)
-    >;
-};
