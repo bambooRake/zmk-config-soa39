@@ -27,13 +27,5 @@ manifest:
       remote: gohanda11
       path: external/zmk-pmw3610-driver
       clone-depth: 1
-    - name: zmk-driver-animation
-      remote: cormoran
-      path: external/zmk-driver-animation
-      clone-depth: 1
-    - name: zmk-driver-ext-power-transient
-      remote: cormoran
-      path: external/zmk-driver-ext-power-transient
-      clone-depth: 1
   self:
     path: config

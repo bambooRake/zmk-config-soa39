@@ -15,12 +15,6 @@
 };
 
 / {
-    chosen {
-        // 右手側ではアニメーション無効化
-        /delete-property/ zmk,animation;
-        /delete-property/ zmk,animation-control;
-    };
-    
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
@@ -63,8 +57,10 @@
     status = "disabled";
 };
 
-&animation {
-    status = "disabled";
+// animation システムは有効にしつつ、animation_layer_statusは設定
+&animation_layer_status {
+    // 右手側では表示なし（LEDが物理的に無効化されているため）
+    pixels = <>;
 };
 
 

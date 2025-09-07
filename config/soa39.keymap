@@ -1,10 +1,7 @@
 #include <behaviors.dtsi>
-#include <behaviors/animation_control.dtsi>
-#include <behaviors/animation_trigger.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk_driver_animation/animation_control.h>
 
 &mt {
     flavor = "balanced";

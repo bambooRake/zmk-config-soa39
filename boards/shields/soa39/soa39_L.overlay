@@ -10,19 +10,3 @@
             ;
 };
 
-// 左手側LED設定を有効化
-&spi3 {
-    status = "okay";
-};
-
-&led_power {
-    status = "okay";
-};
-
-&led_strip {
-    status = "okay";
-};
-
-
-
-
