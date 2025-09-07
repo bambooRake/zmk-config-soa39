@@ -1,6 +1,7 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
 #include <physical_layouts.dtsi>
+#include <dt-bindings/color/color.h>
 
 / {
     chosen {
@@ -98,7 +99,7 @@
 
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
-        control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+        control-gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
     };
 
 
@@ -111,13 +112,13 @@
 &pinctrl {
     spi3_default: spi3_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 19)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 15)>;
         };
     };
 
     spi3_sleep: spi3_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_MOSI, 0, 19)>;
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 15)>;
             low-power-enable;
         };
     };
@@ -129,6 +130,14 @@
     trackball: trackball@0 {
         status = "disabled";
         reg = <0>;
+    };
+};
+
+/ {
+    underglow {
+        compatible = "zmk,underglow";
+        ext-power = <&led_power>;
+        drivers = <&led_strip>;
     };
 };
 
@@ -153,5 +162,29 @@
         spi-zero-frame = <0x40>;
         color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
     };
+};
+
+&animation_layer_status {
+    pixels = <0>;
+    default-color = <HSL(240, 100, 50)>;
+    // Bluetooth colors
+    // Windows: blue
+    // Mac: red  
+    // Linux: orange
+    // Android: green
+    host-colors = <HSL(240, 100, 50) HSL(0, 100, 50) HSL(30, 100, 50) HSL(120, 100, 50)>;
+};
+
+&animation_layer {
+    pixels = <0>;
+    layer-colors = <
+        HSL(0, 0, 0)      // Default layer: off
+        HSL(0, 100, 50)   // Mouse layer: red
+        HSL(120, 100, 50) // Function layer: green
+        HSL(60, 100, 50)  // Number layer: yellow
+        HSL(240, 100, 50) // Arrow layer: blue
+        HSL(300, 100, 50) // Scroll layer: magenta
+        HSL(180, 100, 50) // Bluetooth layer: cyan
+    >;
 };
 
