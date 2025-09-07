@@ -29,9 +29,9 @@
     };
 
     animations {
-        /omit-if-no-ref/ animation_control: control {
+        /omit-if-no-ref/ animation_control: ctrl {
             compatible = "zmk,animation-control";
-            label = "ANIMATION_CTRL_0";
+            label = "ANMCTRL";
             powered-animations = <&endpoint_status_animation &rainbow_animation>;
             battery-animations = <&empty_animation>;
             behavior-animations = <&battery_status_animation &endpoint_status_animation &animation_layer_status>;
@@ -45,17 +45,17 @@
             animations = <&battery_status_animation &black_animation &endpoint_status_animation>;
             durations-ms = <1000 200 1000>;
         };
-        /omit-if-no-ref/ black_animation: black {
+        /omit-if-no-ref/ black_animation: blk {
             compatible = "zmk,animation-solid";
             pixels = <0 1 2 3>;
             colors = <HSL(0, 0, 0)>;
         };
 
-        /omit-if-no-ref/ empty_animation: empty {
+        /omit-if-no-ref/ empty_animation: emp {
             compatible = "zmk,animation-empty";
             status = "okay";
         };
-        /omit-if-no-ref/ rainbow_animation: rainbow {
+        /omit-if-no-ref/ rainbow_animation: rain {
             compatible = "zmk,animation-solid";
             status = "okay";
             pixels = <0 1 2 3>;
@@ -67,7 +67,7 @@
             pixels = <0 1 2 3>;
             colors = <HSL(0, 100, 50)>;
         };
-        /omit-if-no-ref/ endpoint_status_animation: endpoint_status {
+        /omit-if-no-ref/ endpoint_status_animation: epstat {
             compatible = "zmk,animation-endpoint";
             status = "okay";
             pixels = <0 1 2 3>;
@@ -76,7 +76,7 @@
             color-disconnected = <HSL(0, 100, 50)>;
             color-usb = <HSL(120, 100, 25)>;
         };
-        /omit-if-no-ref/ battery_status_animation: battery_status {
+        /omit-if-no-ref/ battery_status_animation: batstat {
             compatible = "zmk,animation-battery-status";
             status = "okay";
             pixels = <0 1 2 3>;
