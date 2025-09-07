@@ -6,7 +6,7 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        zmk,led-widgets-dev = <&led_strip>;
+        zmk,underglow = &led_strip;
     };
 
     soa39_physical_layout: soa39_physical_layout {
@@ -156,31 +156,5 @@
     };
 };
 
-/ {
-    led_widgets {
-        compatible = "zmk,led-widgets";
-        widget_battery_status {
-            type = "battery-status";
-            pixels = <0>;
-        };
-        widget_layer_status {
-            type = "layer-status";
-            pixels = <0>;
-            layer-colors = <
-                0x000000  /* Default layer: off */
-                0xFF0000  /* Mouse layer: red */
-                0x00FF00  /* Function layer: green */
-                0xFFFF00  /* Number layer: yellow */
-                0x0000FF  /* Arrow layer: blue */
-                0xFF00FF  /* Scroll layer: magenta */
-                0x00FFFF  /* Bluetooth layer: cyan */
-            >;
-        };
-        widget_output_status {
-            type = "output-status";
-            pixels = <0>;
-        };
-    };
-};
 
 
