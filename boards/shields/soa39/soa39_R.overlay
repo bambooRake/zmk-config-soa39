@@ -15,6 +15,12 @@
 };
 
 / {
+    chosen {
+        // 右手側ではアニメーション無効化
+        /delete-property/ zmk,animation;
+        /delete-property/ zmk,animation-control;
+    };
+    
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
