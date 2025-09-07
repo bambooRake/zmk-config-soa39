@@ -71,7 +71,7 @@
 &gpio0 {
     led_enable_hog {
         gpio-hog;
-        gpios = <15>;
+        gpios = <15 GPIO_ACTIVE_HIGH>;
         output-high;
         line-name = "led-enable";
     };
