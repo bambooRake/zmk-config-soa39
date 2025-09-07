@@ -1,12 +1,56 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
 #include <physical_layouts.dtsi>
+#include <dt-bindings/zmk_driver_animation/animation_control.h>
+#include <zmk_driver_animation/animation.dtsi>
 
 / {
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        zmk,underglow = &led_strip;
+        zmk,animation = &root_animation;
+        zmk,animation-control = &root_animation;
+    };
+
+    root_animation:animation_0 {
+        compatible = "zmk,animation-control";
+        powered-animations = <&endpoint_status>;
+        battery-animations = <&empty_animation>;
+        behavior-animations = <&battery_status &endpoint_status>;
+        activation-animation = <&battery_status>;
+        activation-animation-duration-ms = <1000>;
+        ext-power = <&led_power>;
+    };
+
+    empty_animation:empty_animation {
+        compatible = "zmk,animation-empty";
+        status = "okay";
+    };
+    
+    endpoint_status:endpoint_status {
+        compatible = "zmk,animation-endpoint";
+        status = "okay";
+        pixels = <0>;
+        color-open = <HSL(60, 100, 50)>;
+        color-connected = <HSL(240, 100, 50)>;
+        color-disconnected = <HSL(0, 100, 50)>;
+        color-usb = <HSL(120, 100, 25)>;
+    };
+    
+    battery_status:battery_status {
+        compatible = "zmk,animation-battery-status";
+        status = "okay";
+        pixels = <0>;
+        color-high = <HSL(120, 100, 50)>;
+        color-middle = <HSL(60, 100, 50)>;
+        color-low = <HSL(0, 100, 50)>;
+    };
+
+    animation: animation {
+        compatible = "zmk,animation";
+        drivers = <&led_strip>;
+        pixels = <&pixel 0 0>;
+        chain-lengths = <1>;
     };
 
     soa39_physical_layout: soa39_physical_layout {
@@ -99,7 +143,7 @@
 
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
-        control-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
+        control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>;
     };
 
 
