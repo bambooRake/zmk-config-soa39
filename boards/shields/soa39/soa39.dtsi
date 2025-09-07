@@ -99,7 +99,7 @@
 
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
-        control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+        control-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
     };
 
 
@@ -146,7 +146,7 @@
         
         /* SPI */
         reg = <0>;
-        spi-max-frequency = <4000000>;
+        spi-max-frequency = <2400000>; /* Lower frequency for SK6812 */
 
         /* SK6812 - RGBW LED */
         chain-length = <1>; /* 1 LED */
