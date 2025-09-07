@@ -19,10 +19,9 @@
 ---
 include:
  - board: seeeduino_xiao_ble
-   shield: soa39_R
-   snippet: studio-rpc-usb-uart rgbled_adapter
+   shield: soa39_R rgbled_adapter
+   snippet: studio-rpc-usb-uart
  - board: seeeduino_xiao_ble
-   shield: soa39_L
-   snippet: rgbled_adapter
+   shield: soa39_L rgbled_adapter
  - board: seeeduino_xiao_ble
    shield: settings_reset
