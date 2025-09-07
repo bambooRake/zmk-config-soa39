@@ -107,7 +107,7 @@
         control-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
     };
 
-    root_animation: animation_0 {
+    root_animation:animation_0 {
         compatible = "zmk,animation-control";
         label = "ANIMATION_CTRL_0";
         powered-animations = <&animation_layer_status>;
@@ -119,19 +119,19 @@
         ext-power = <&led_power>;
     };
 
-    init_animation: init_animation {
+    init_animation:init_animation {
         compatible = "zmk,animation-compose";
         animations = <&animation_layer_status &black_animation &animation_layer_status>;
         durations-ms = <1000 200 1000>;
     };
 
-    black_animation: black_animation {
+    black_animation:black_animation {
         compatible = "zmk,animation-solid";
         pixels = <0>;
         colors = <HSL(0, 0, 0)>;
     };
 
-    empty_animation: empty_animation {
+    empty_animation:empty_animation {
         compatible = "zmk,animation-empty";
         status = "okay";
     };
