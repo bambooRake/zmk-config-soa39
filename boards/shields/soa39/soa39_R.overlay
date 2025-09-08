@@ -97,6 +97,7 @@
             compatible = "zmk,animation-endpoint";
             pixels = <0>;
             color-open = <0xFFFF00>;          // Yellow for advertising
+            color-connected = <0x0000FF>;     // Blue for connected
         };
     };
 };
