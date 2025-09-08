@@ -72,12 +72,12 @@
         compatible = "zmk,animation";
         drivers = <&led_strip>;
         chain-lengths = <1>;
-        pixels = <&pixel_0 0 0>;
+        pixels = <&pixel_0>;
         
         // Layer status animation
         animation_layer_status: animation_layer_status {
             compatible = "zmk,animation-layer-status";
-            pixels = <&pixel_0 0 0>;
+            pixels = <0>;
             default_color = <0x000000>;  // Black for layer 0
             colors = <0xFF0000    // Red for layer 1 (Mouse)
                      0x00FF00    // Green for layer 2 (Function)
@@ -92,7 +92,7 @@
         // Battery level animation
         animation_battery_level: animation_battery_level {
             compatible = "zmk,animation-battery-level";
-            pixels = <&pixel_0 0 0>;
+            pixels = <0>;
             color_high = <0x00FF00>;     // Green for high battery
             color_middle = <0xFFFF00>;   // Yellow for middle battery  
             color_low = <0xFF0000>;      // Red for low battery
@@ -104,7 +104,7 @@
         // Endpoint status animation
         animation_endpoint: animation_endpoint {
             compatible = "zmk,animation-endpoint";
-            pixels = <&pixel_0 0 0>;
+            pixels = <0>;
             color_connected = <0x0000FF>;     // Blue for connected
             color_open = <0xFFFF00>;          // Yellow for advertising
             color_disconnected = <0xFF0000>;  // Red for disconnected
