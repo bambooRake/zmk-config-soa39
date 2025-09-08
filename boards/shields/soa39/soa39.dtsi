@@ -120,37 +120,37 @@
     black_animation: black_animation {
         compatible = "zmk,animation-solid";
         label = "BLACK";
-        colors = <HSL(0, 0, 0)>;
+        colors = <0x000000>;
     };
 
     endpoint_status_animation: endpoint_status_animation {
         compatible = "zmk,animation-endpoint";
         label = "ENDPOINT_STATUS";
-        on-ble-connected = <HSL(240, 100, 50)>; // Blue
-        on-ble-advertising = <HSL(60, 100, 50)>; // Yellow  
-        on-ble-disconnected = <HSL(0, 100, 50)>; // Red
-        on-usb-connected = <HSL(120, 100, 50)>; // Green
+        on-ble-connected = <0x0000FF>; // Blue
+        on-ble-advertising = <0xFFFF00>; // Yellow  
+        on-ble-disconnected = <0xFF0000>; // Red
+        on-usb-connected = <0x00FF00>; // Green
     };
 
     battery_status_animation: battery_status_animation {
         compatible = "zmk,animation-battery-status";
         label = "BATTERY_STATUS";
-        on-high = <HSL(120, 100, 50)>; // Green
-        on-middle = <HSL(60, 100, 50)>; // Yellow
-        on-low = <HSL(0, 100, 50)>; // Red
-        on-critical = <HSL(0, 100, 25)>; // Dark Red
+        on-high = <0x00FF00>; // Green
+        on-middle = <0xFFFF00>; // Yellow
+        on-low = <0xFF0000>; // Red
+        on-critical = <0x800000>; // Dark Red
     };
 
     layer_status_animation: layer_status_animation {
         compatible = "zmk,animation-layer-status";
         label = "LAYER_STATUS";
-        default = <HSL(0, 0, 0)>;  // Black for default layer
-        colors = <HSL(0, 100, 50)    // Red for layer 1
-                 HSL(120, 100, 50)   // Green for layer 2
-                 HSL(60, 100, 50)    // Yellow for layer 3
-                 HSL(240, 100, 50)   // Blue for layer 4
-                 HSL(300, 100, 50)   // Magenta for layer 5
-                 HSL(180, 100, 50)>; // Cyan for layer 6
+        default = <0x000000>;  // Black for default layer
+        colors = <0xFF0000    // Red for layer 1
+                 0x00FF00    // Green for layer 2
+                 0xFFFF00    // Yellow for layer 3
+                 0x0000FF    // Blue for layer 4
+                 0xFF00FF    // Magenta for layer 5
+                 0x00FFFF>;  // Cyan for layer 6
     };
 
     animation: animation {
