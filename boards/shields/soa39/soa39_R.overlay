@@ -40,25 +40,9 @@
         };
     };
 
-    spi1_default: spi1_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 19)>,
-                <NRF_PSEL(SPIM_MISO, 0, 19)>;
-        };
-    };
-
-    spi1_sleep: spi1_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 19)>,
-                <NRF_PSEL(SPIM_MISO, 0, 19)>;
-            low-power-enable;
-        };
-    };
 };
 
-// Animation configurations are inherited from soa39.dtsi
+// LED indicator configuration is in soa39.dtsi
 
 &xiao_serial { status = "disabled"; };
 

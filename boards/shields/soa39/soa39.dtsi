@@ -6,9 +6,10 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        zmk,animation = &animation;
-        zmk,animations = &animations;
-        zmk,animation_control = &animation_control;
+    };
+
+    aliases {
+        indicator-led = &indicator_led;
     };
 
 
@@ -91,13 +92,23 @@
         status = "disabled";
     };
 
-    // LED Power Control
+    // LED Power Control  
     led_power: led_power {
         compatible = "gpio-leds";
         status = "okay";
         power_led: power_led {
-            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-            label = "LED Power";
+            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // P-channel MOSFET control (active low)
+            label = "LED Power Control";
+        };
+    };
+
+    // For zmk-poor-mans-led-indicator, we'll use the power control pin
+    leds {
+        compatible = "gpio-leds";
+        status = "okay";
+        indicator_led: indicator_led {
+            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // Use power control for simple on/off indication
+            label = "Status LED";
         };
     };
     
@@ -110,75 +121,6 @@
         io-channels = <&adc 0>;
     };
 
-    // Pixel definitions  
-    pixel: pixel {
-        compatible = "zmk,animation-pixel";
-        #pixel-cells = <2>;
-    };
-
-    // Animation definitions
-    black_animation: black_animation {
-        compatible = "zmk,animation-solid";
-        label = "BLACK";
-        colors = <0x000000>;
-    };
-
-    endpoint_status_animation: endpoint_status_animation {
-        compatible = "zmk,animation-endpoint";
-        label = "ENDPOINT_STATUS";
-        on-ble-connected = <0x0000FF>; // Blue
-        on-ble-advertising = <0xFFFF00>; // Yellow  
-        on-ble-disconnected = <0xFF0000>; // Red
-        on-usb-connected = <0x00FF00>; // Green
-    };
-
-    battery_status_animation: battery_status_animation {
-        compatible = "zmk,animation-battery-status";
-        label = "BATTERY_STATUS";
-        on-high = <0x00FF00>; // Green
-        on-middle = <0xFFFF00>; // Yellow
-        on-low = <0xFF0000>; // Red
-        on-critical = <0x800000>; // Dark Red
-    };
-
-    layer_status_animation: layer_status_animation {
-        compatible = "zmk,animation-layer-status";
-        label = "LAYER_STATUS";
-        default = <0x000000>;  // Black for default layer
-        colors = <0xFF0000    // Red for layer 1
-                 0x00FF00    // Green for layer 2
-                 0xFFFF00    // Yellow for layer 3
-                 0x0000FF    // Blue for layer 4
-                 0xFF00FF    // Magenta for layer 5
-                 0x00FFFF>;  // Cyan for layer 6
-    };
-
-    animation: animation {
-        compatible = "zmk,animation";
-        label = "ANIMATION";
-        led-strip = <&led_strip>;
-        pixels = <&pixel 0 0>;
-    };
-
-    animations: animations {
-        compatible = "zmk,animations";
-        label = "ANIMATIONS";
-        
-        animation_control: animation_control {
-            compatible = "zmk,animation-control";
-            label = "ANIMATION_CONTROL";
-            powered-animations = <&layer_status_animation>;
-            battery-animations = <&battery_status_animation>;
-            behavior-animations = <&endpoint_status_animation>;
-        };
-        
-        init_animation: init_animation {
-            compatible = "zmk,animation-compose";
-            label = "INIT";
-            animations = <&black_animation>;
-            durations = <1000>;
-        };
-    };
 
 };
 
@@ -196,23 +138,5 @@
     };
 };
 
-// SPI1 for LED Strip
-&spi1 {
-    status = "okay";
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi1_default>;
-    pinctrl-1 = <&spi1_sleep>;
-    pinctrl-names = "default", "sleep";
-
-    led_strip: ws2812@0 {
-        compatible = "worldsemi,ws2812-spi";
-        reg = <0>;
-        spi-max-frequency = <4000000>;
-        chain-length = <1>;
-        spi-one-frame = <0x70>;
-        spi-zero-frame = <0x40>;
-        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
-    };
-};
 
 
