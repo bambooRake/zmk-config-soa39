@@ -70,6 +70,7 @@
             color-open = <0xFFFF00>;          // Yellow for advertising
             color-connected = <0x0000FF>;     // Blue for connected
             color-disconnected = <0xFF0000>;  // Red for disconnected
+            color-usb = <0x00FF00>;           // Green for USB connected
         };
     };
 };
