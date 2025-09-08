@@ -14,7 +14,7 @@ manifest:
       url-base: https://github.com/cormoran
   projects:
     - name: zmk
-      remote: zmkfirmware
+      remote: cormoran
       import:
         file: app/west.yml
         path-prefix: external
