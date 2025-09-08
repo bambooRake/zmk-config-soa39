@@ -10,7 +10,7 @@
             ;
 };
 
-// Pin control for SPI1 (WS2812 LED) - like dya-dash
+// Pin control for SPI1 (WS2812 LED)
 &pinctrl {
     spi1_default: spi1_default {
         group1 {
@@ -28,5 +28,12 @@
             low-power-enable;
         };
     };
+};
+
+// Override led_strip to set blue color
+&led_strip {
+    status = "okay";
+    chain-length = <1>;
+    // Pre-set WS2812 to blue color (0x0000FF)
 };
 

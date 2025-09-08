@@ -42,7 +42,7 @@
 
 };
 
-// Pin control for SPI1 (WS2812 LED) - like dya-dash  
+// Pin control for SPI1 (WS2812 LED)
 &pinctrl {
     spi0_default: spi0_default {
         group1 {

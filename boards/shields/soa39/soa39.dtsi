@@ -6,6 +6,7 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
+        zmk,underglow = &led_strip;
     };
 
     aliases {
@@ -92,7 +93,7 @@
         status = "disabled";
     };
 
-    // LED Power Control (like dya-dash)
+    // LED Power Control
     led_power: led_power {
         compatible = "zmk,ext-power-transient";
         control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>; // P-channel MOSFET control
@@ -135,7 +136,7 @@
     };
 };
 
-// SPI1 for WS2812 LED control (like dya-dash)
+// SPI1 for WS2812 LED control
 &spi1 {
     status = "okay";
     compatible = "nordic,nrf-spim";
