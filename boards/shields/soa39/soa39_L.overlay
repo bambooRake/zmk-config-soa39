@@ -30,18 +30,5 @@
     };
 };
 
-&layer_status_animation {
-    status = "okay";
-    pixels = <0>;
-};
-
-&endpoint_status_animation {
-    status = "okay";
-    pixels = <0>;
-};
-
-&battery_status_animation {
-    status = "okay";
-    pixels = <0>;
-};
+// Animation configurations are inherited from soa39.dtsi
 

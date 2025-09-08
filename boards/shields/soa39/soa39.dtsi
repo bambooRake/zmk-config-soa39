@@ -8,6 +8,7 @@
         zmk,battery = &non_lipo_battery;
         zmk,animation = &animation;
         zmk,animations = &animations;
+        zmk,animation_control = &animation_control;
     };
 
 
@@ -109,70 +110,73 @@
         io-channels = <&adc 0>;
     };
 
+    // Pixel definitions  
+    pixel: pixel {
+        compatible = "zmk,animation-pixel";
+        #pixel-cells = <2>;
+    };
+
     // Animation definitions
     black_animation: black_animation {
         compatible = "zmk,animation-solid";
         label = "BLACK";
-        color = <0x000000>;
-        fade-in = <1>;
-        fade-out = <1>;
-        duration = <1000>;
-        led-strip = <&led_strip>;
-    };
-
-    layer_status_animation: layer_status_animation {
-        compatible = "zmk,animation-layer-status";
-        label = "LAYER_STATUS";
-        led-strip = <&led_strip>;
+        colors = <HSL(0, 0, 0)>;
     };
 
     endpoint_status_animation: endpoint_status_animation {
         compatible = "zmk,animation-endpoint";
         label = "ENDPOINT_STATUS";
-        led-strip = <&led_strip>;
+        on-ble-connected = <HSL(240, 100, 50)>; // Blue
+        on-ble-advertising = <HSL(60, 100, 50)>; // Yellow  
+        on-ble-disconnected = <HSL(0, 100, 50)>; // Red
+        on-usb-connected = <HSL(120, 100, 50)>; // Green
     };
 
     battery_status_animation: battery_status_animation {
         compatible = "zmk,animation-battery-status";
         label = "BATTERY_STATUS";
-        led-strip = <&led_strip>;
+        on-high = <HSL(120, 100, 50)>; // Green
+        on-middle = <HSL(60, 100, 50)>; // Yellow
+        on-low = <HSL(0, 100, 50)>; // Red
+        on-critical = <HSL(0, 100, 25)>; // Dark Red
+    };
+
+    layer_status_animation: layer_status_animation {
+        compatible = "zmk,animation-layer-status";
+        label = "LAYER_STATUS";
+        default = <HSL(0, 0, 0)>;  // Black for default layer
+        colors = <HSL(0, 100, 50)    // Red for layer 1
+                 HSL(120, 100, 50)   // Green for layer 2
+                 HSL(60, 100, 50)    // Yellow for layer 3
+                 HSL(240, 100, 50)   // Blue for layer 4
+                 HSL(300, 100, 50)   // Magenta for layer 5
+                 HSL(180, 100, 50)>; // Cyan for layer 6
     };
 
     animation: animation {
         compatible = "zmk,animation";
         label = "ANIMATION";
         led-strip = <&led_strip>;
+        pixels = <&pixel 0 0>;
     };
 
     animations: animations {
         compatible = "zmk,animations";
         label = "ANIMATIONS";
+        
+        animation_control: animation_control {
+            compatible = "zmk,animation-control";
+            label = "ANIMATION_CONTROL";
+            powered-animations = <&layer_status_animation>;
+            battery-animations = <&battery_status_animation>;
+            behavior-animations = <&endpoint_status_animation>;
+        };
+        
         init_animation: init_animation {
             compatible = "zmk,animation-compose";
             label = "INIT";
             animations = <&black_animation>;
             durations = <1000>;
-        };
-        
-        powered_animations: powered_animations {
-            compatible = "zmk,animation-compose";
-            label = "POWERED";
-            animations = <&layer_status_animation>;
-            durations = <0>;
-        };
-        
-        battery_animations: battery_animations {
-            compatible = "zmk,animation-compose";
-            label = "BATTERY";
-            animations = <&battery_status_animation>;
-            durations = <0>;
-        };
-        
-        behavior_animations: behavior_animations {
-            compatible = "zmk,animation-compose";
-            label = "BEHAVIOR";
-            animations = <&endpoint_status_animation>;
-            durations = <0>;
         };
     };
 
