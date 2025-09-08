@@ -78,6 +78,7 @@
         animation_layer_status: animation_layer_status {
             compatible = "zmk,animation-layer-status";
             pixels = <0>;
+            default-color = <0x000000>;  // Black for default layer
             colors = <0xFF0000    // Red for layer 1 (Mouse)
                      0x00FF00    // Green for layer 2 (Function)
                      0xFFFF00    // Yellow for layer 3 (Number)
