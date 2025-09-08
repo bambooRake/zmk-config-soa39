@@ -115,6 +115,7 @@
         animations = <&animation>;
         powered-animations = <&animation>;
         battery-animations = <&animation>;
+        behavior-animations = <&animation>;
     };
 
 };
