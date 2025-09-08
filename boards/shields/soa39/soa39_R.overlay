@@ -40,6 +40,79 @@
         };
     };
 
+    spi1_default: spi1_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 19)>,
+                <NRF_PSEL(SPIM_MISO, 0, 19)>;
+        };
+    };
+
+    spi1_sleep: spi1_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 19)>,
+                <NRF_PSEL(SPIM_MISO, 0, 19)>;
+            low-power-enable;
+        };
+    };
+
+};
+
+/ {
+    // Animation Configuration  
+    pixel_0: pixel_0 {
+        compatible = "zmk,animation-pixel";
+        position_x = <0>;
+        position_y = <0>;
+    };
+
+    animation: animation {
+        compatible = "zmk,animation";
+        drivers = <&led_strip>;
+        chain-lengths = <1>;
+        pixels = <&pixel_0>;
+        
+        // Layer status animation
+        animation_layer_status: animation_layer_status {
+            compatible = "zmk,animation-layer-status";
+            pixels = <0>;
+            default_color = <0x000000>;  // Black for layer 0
+            colors = <0xFF0000    // Red for layer 1 (Mouse)
+                     0x00FF00    // Green for layer 2 (Function)
+                     0xFFFF00    // Yellow for layer 3 (Number)
+                     0x0000FF    // Blue for layer 4 (Arrow)
+                     0xFF00FF    // Magenta for layer 5 (Scroll)
+                     0x00FFFF>;  // Cyan for layer 6 (Bluetooth)
+            layer_offset = <0>;
+            extend_duration_seconds = <2>;
+        };
+
+        // Battery level animation
+        animation_battery_level: animation_battery_level {
+            compatible = "zmk,animation-battery-level";
+            pixels = <0>;
+            color_high = <0x00FF00>;     // Green for high battery
+            color_middle = <0xFFFF00>;   // Yellow for middle battery  
+            color_low = <0xFF0000>;      // Red for low battery
+            animation_duration_seconds = <3>;
+            low_alert_start_threshold = <20>;
+            low_alert_interval_seconds = <60>;
+        };
+
+        // Endpoint status animation
+        animation_endpoint: animation_endpoint {
+            compatible = "zmk,animation-endpoint";
+            pixels = <0>;
+            color_connected = <0x0000FF>;     // Blue for connected
+            color_open = <0xFFFF00>;          // Yellow for advertising
+            color_disconnected = <0xFF0000>;  // Red for disconnected
+            endpoint_change_duration_seconds = <2>;
+            not_connected_duration_seconds = <3>;
+            blinking_duration_seconds = <1>;
+            extend_duration_seconds = <2>;
+        };
+    };
 };
 
 &xiao_serial { status = "disabled"; };
@@ -60,10 +133,5 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
-};
-
-&animation_layer_status {
-    // show layer 4,5,6,7 in right side
-    layer-offset = <4>;
 };
 
