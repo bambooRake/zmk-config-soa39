@@ -92,6 +92,13 @@
         status = "disabled";
     };
 
+    // LED Power Control (like dya-dash)
+    led_power: led_power {
+        compatible = "zmk,ext-power-transient";
+        control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>; // P-channel MOSFET control
+        label = "LED Power Control";
+    };
+
     // LED configuration for zmk-poor-mans-led-indicator
     leds {
         compatible = "gpio-leds";
@@ -125,6 +132,25 @@
     trackball: trackball@0 {
         status = "disabled";
         reg = <0>;
+    };
+};
+
+// SPI1 for WS2812 LED control (like dya-dash)
+&spi1 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
+    pinctrl-names = "default", "sleep";
+
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        reg = <0>;
+        spi-max-frequency = <4000000>;
+        chain-length = <1>;
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
     };
 };
 
