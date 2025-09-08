@@ -69,6 +69,7 @@
             pixels = <0>;
             color-open = <0xFFFF00>;          // Yellow for advertising
             color-connected = <0x0000FF>;     // Blue for connected
+            color-disconnected = <0xFF0000>;  // Red for disconnected
         };
     };
 };
