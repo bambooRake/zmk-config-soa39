@@ -56,57 +56,24 @@
             low-power-enable;
         };
     };
-
 };
 
-/ {
-    // Animation Configuration  
-    pixel_0: pixel_0 {
-        compatible = "zmk,animation-pixel";
-        #pixel-cells = <2>;
-        position_x = <0>;
-        position_y = <0>;
-    };
+&layer_status_animation {
+    status = "okay";
+    pixels = <0>;
+};
 
-    animation: animation {
-        compatible = "zmk,animation";
-        drivers = <&led_strip>;
-        chain-lengths = <1>;
-        pixels = <&pixel_0 0 0>;
-        
-        // Layer status animation
-        animation_layer_status: animation_layer_status {
-            compatible = "zmk,animation-layer-status";
-            pixels = <0>;
-            default-color = <0x000000>;  // Black for default layer
-            colors = <0xFF0000    // Red for layer 1 (Mouse)
-                     0x00FF00    // Green for layer 2 (Function)
-                     0xFFFF00    // Yellow for layer 3 (Number)
-                     0x0000FF    // Blue for layer 4 (Arrow)
-                     0xFF00FF    // Magenta for layer 5 (Scroll)
-                     0x00FFFF>;  // Cyan for layer 6 (Bluetooth)
-        };
+&endpoint_status_animation {
+    status = "okay";
+    pixels = <0>;
+};
 
-        // Battery level animation
-        animation_battery_level: animation_battery_level {
-            compatible = "zmk,animation-battery-level";
-            pixels = <0>;
-        };
-
-        // Endpoint status animation
-        animation_endpoint: animation_endpoint {
-            compatible = "zmk,animation-endpoint";
-            pixels = <0>;
-            color-open = <0xFFFF00>;          // Yellow for advertising
-            color-connected = <0x0000FF>;     // Blue for connected
-            color-disconnected = <0xFF0000>;  // Red for disconnected
-            color-usb = <0x00FF00>;           // Green for USB connected
-        };
-    };
+&battery_status_animation {
+    status = "okay";
+    pixels = <0>;
 };
 
 &xiao_serial { status = "disabled"; };
-
 
 &spi0 {
     status = "okay";

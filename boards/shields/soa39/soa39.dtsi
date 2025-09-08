@@ -7,7 +7,7 @@
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
         zmk,animation = &animation;
-        zmk,animation_control = &animation_control;
+        zmk,animations = &animations;
     };
 
 
@@ -109,12 +109,71 @@
         io-channels = <&adc 0>;
     };
 
-    animation_control: animation_control {
-        compatible = "zmk,animation-control";
-        label = "ANIMATION_CONTROL";
-        powered-animations = <&animation>;
-        battery-animations = <&animation>;
-        behavior-animations = <&animation>;
+    // Animation definitions
+    black_animation: black_animation {
+        compatible = "zmk,animation-solid";
+        label = "BLACK";
+        color = <0x000000>;
+        fade-in = <1>;
+        fade-out = <1>;
+        duration = <1000>;
+        led-strip = <&led_strip>;
+    };
+
+    layer_status_animation: layer_status_animation {
+        compatible = "zmk,animation-layer-status";
+        label = "LAYER_STATUS";
+        led-strip = <&led_strip>;
+    };
+
+    endpoint_status_animation: endpoint_status_animation {
+        compatible = "zmk,animation-endpoint";
+        label = "ENDPOINT_STATUS";
+        led-strip = <&led_strip>;
+    };
+
+    battery_status_animation: battery_status_animation {
+        compatible = "zmk,animation-battery-status";
+        label = "BATTERY_STATUS";
+        led-strip = <&led_strip>;
+    };
+
+    animation: animation {
+        compatible = "zmk,animation";
+        label = "ANIMATION";
+        led-strip = <&led_strip>;
+    };
+
+    animations: animations {
+        compatible = "zmk,animations";
+        label = "ANIMATIONS";
+        init_animation: init_animation {
+            compatible = "zmk,animation-compose";
+            label = "INIT";
+            animations = <&black_animation>;
+            durations = <1000>;
+        };
+        
+        powered_animations: powered_animations {
+            compatible = "zmk,animation-compose";
+            label = "POWERED";
+            animations = <&layer_status_animation>;
+            durations = <0>;
+        };
+        
+        battery_animations: battery_animations {
+            compatible = "zmk,animation-compose";
+            label = "BATTERY";
+            animations = <&battery_status_animation>;
+            durations = <0>;
+        };
+        
+        behavior_animations: behavior_animations {
+            compatible = "zmk,animation-compose";
+            label = "BEHAVIOR";
+            animations = <&endpoint_status_animation>;
+            durations = <0>;
+        };
     };
 
 };
