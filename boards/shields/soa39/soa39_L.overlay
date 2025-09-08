@@ -43,7 +43,7 @@
         compatible = "zmk,animation";
         drivers = <&led_strip>;
         chain-lengths = <1>;
-        pixels = <&pixel_0>;
+        pixels = <&pixel_0 0 0>;
         
         // Layer status animation
         animation_layer_status: animation_layer_status {
