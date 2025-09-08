@@ -114,6 +114,7 @@
         label = "ANIMATION_CONTROL";
         animations = <&animation>;
         powered-animations = <&animation>;
+        battery-animations = <&animation>;
     };
 
 };
