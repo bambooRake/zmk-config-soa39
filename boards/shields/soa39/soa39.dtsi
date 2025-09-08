@@ -92,34 +92,13 @@
         status = "disabled";
     };
 
-    // LED Power Control  
-    led_power: led_power {
-        compatible = "gpio-leds";
-        status = "okay";
-        power_led: power_led {
-            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // P-channel MOSFET control (active low)
-            label = "LED Power Control";
-        };
-    };
-
-    // LED power control is essential - P0.15 controls MOSFET for 3.3V supply to WS2812
-    // P0.19 should be set HIGH to make WS2812 show white light
+    // LED configuration for zmk-poor-mans-led-indicator
     leds {
         compatible = "gpio-leds";
         status = "okay";
         indicator_led: indicator_led {
             gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // P-channel MOSFET control (active low)
             label = "Status LED";
-        };
-    };
-
-    // Initialize P0.19 as HIGH for WS2812 white color
-    ws2812_init {
-        compatible = "gpio-leds";
-        status = "okay";
-        ws2812_data_pin: ws2812_data_pin {
-            gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
-            label = "WS2812 Data High";
         };
     };
     
