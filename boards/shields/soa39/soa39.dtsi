@@ -93,11 +93,12 @@
         status = "disabled";
     };
 
-    // LED Power Control
+    // LED Power Control - changed to zmk,ext-power-generic
     led_power: led_power {
-        compatible = "zmk,ext-power-transient";
+        compatible = "zmk,ext-power-generic";
         control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>; // P-channel MOSFET control
         label = "LED Power Control";
+        init-delay-ms = <50>;
     };
 
     // LED configuration for zmk-poor-mans-led-indicator
