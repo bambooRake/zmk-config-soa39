@@ -6,6 +6,8 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
+        zmk,animation = &animation;
+        zmk,animation_control = &animation_control;
     };
 
 
@@ -105,6 +107,11 @@
     non_lipo_battery: non_lipo_battery {
         compatible = "zmk,non-lipo-battery";
         io-channels = <&adc 0>;
+    };
+
+    animation_control: animation_control {
+        compatible = "zmk,animation-control";
+        animations = <&animation>;
     };
 
 };
