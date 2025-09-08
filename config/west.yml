@@ -12,8 +12,6 @@ manifest:
       url-base: https://github.com/gohanda11
     - name: cormoran
       url-base: https://github.com/cormoran
-    - name: bluedrink9
-      url-base: https://github.com/BlueDrink9
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -30,7 +28,7 @@ manifest:
       path: external/zmk-pmw3610-driver
       clone-depth: 1
     - name: zmk-poor-mans-led-indicator
-      remote: bluedrink9
+      remote: gohanda11
       path: external/zmk-poor-mans-led-indicator
       clone-depth: 1
   self:
