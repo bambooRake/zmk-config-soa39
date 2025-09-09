@@ -6,11 +6,13 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        zmk,underglow = &led_strip;
+        // Removed zmk,underglow to avoid conflict with zmk-poor-mans-led-indicator
+        // zmk,underglow = &led_strip;
     };
 
     aliases {
-        indicator-led = &indicator_led;
+        // Use only led-strip for zmk-poor-mans-led-indicator
+        // indicator-led = &indicator_led;
         led-strip = &led_strip;
     };
 
