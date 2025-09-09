@@ -11,6 +11,7 @@
 
     aliases {
         indicator-led = &indicator_led;
+        led-strip = &led_strip;
     };
 
 
