@@ -10,7 +10,6 @@
     };
 
     aliases {
-        indicator-led = &indicator_led;
         led-strip = &led_strip;
     };
 
@@ -102,10 +101,10 @@
         init-delay-ms = <50>;
     };
 
-    // LED configuration for zmk-poor-mans-led-indicator
+    // LED configuration for zmk-poor-mans-led-indicator (disabled - using WS2812 now)
     leds {
         compatible = "gpio-leds";
-        status = "okay";
+        status = "disabled";
         indicator_led: indicator_led {
             gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // P-channel MOSFET control (active low)
             label = "Status LED";
