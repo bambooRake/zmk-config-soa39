@@ -159,5 +159,7 @@
     };
 };
 
-
-
+// Use NFC pins as GPIOs (required for GPIO0 15 LED power control)
+&uicr {
+    nfct-pins-as-gpios;
+};
