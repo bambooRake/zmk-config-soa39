@@ -27,6 +27,15 @@
 };
 
 / {
+    behaviors {
+        // Temporary WS2812 widget behavior definition until external module is recognized
+        ws2812_wdg: ws2812_widget {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none>; // Placeholder - will be replaced by actual WS2812 implementation
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
