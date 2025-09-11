@@ -3,8 +3,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// Include WS2812 widget behavior
-#include <behaviors/ws2812_widget.dtsi>
 
 &mt {
     flavor = "balanced";
@@ -29,6 +27,16 @@
 };
 
 / {
+    behaviors {
+        ws2812_wdg: ws2812_widget {
+            compatible = "zmk,behavior-ws2812-widget";
+            #binding-cells = <0>;
+            indicate-battery;
+            indicate-connectivity;
+            indicate-layer;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
