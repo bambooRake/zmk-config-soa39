@@ -27,16 +27,6 @@
 };
 
 / {
-    behaviors {
-        ws2812_wdg: ws2812_widget {
-            compatible = "zmk,behavior-ws2812-widget";
-            #binding-cells = <0>;
-            indicate-battery;
-            indicate-connectivity;
-            indicate-layer;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
 

@@ -2,6 +2,9 @@
 #include <dt-bindings/led/led.h>
 #include <physical_layouts.dtsi>
 
+// Include WS2812 widget behavior
+#include <dt-bindings/zmk/ws2812_widget.h>
+
 / {
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
