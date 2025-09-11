@@ -40,27 +40,6 @@
         };
     };
 
-};
-
-// Pin control for SPI1 (WS2812 LED)
-&pinctrl {
-    spi0_default: spi0_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
-        };
-    };
-
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 5)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 4)>,
-                <NRF_PSEL(SPIM_MISO, 0, 4)>;
-            low-power-enable;
-        };
-    };
-
     spi1_default: spi1_default {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
@@ -77,6 +56,13 @@
             low-power-enable;
         };
     };
+};
+
+// Override led_strip to set red color for right side  
+&led_strip {
+    status = "okay";
+    chain-length = <1>;
+    // Pre-set WS2812 to red color (0xFF0000) for right side identification
 };
 
 &xiao_serial { status = "disabled"; };

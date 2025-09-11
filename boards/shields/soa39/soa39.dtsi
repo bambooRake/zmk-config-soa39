@@ -6,13 +6,10 @@
     chosen {
         zmk,physical-layout = &soa39_physical_layout;
         zmk,battery = &non_lipo_battery;
-        // Removed zmk,underglow to avoid conflict with zmk-poor-mans-led-indicator
-        // zmk,underglow = &led_strip;
+        zmk,ws2812-widget = &led_strip;
     };
 
     aliases {
-        // Use only led-strip for zmk-poor-mans-led-indicator
-        // indicator-led = &indicator_led;
         led-strip = &led_strip;
     };
 
@@ -96,22 +93,12 @@
         status = "disabled";
     };
 
-    // LED Power Control - changed to zmk,ext-power-generic
+    // LED Power Control for WS2812
     led_power: led_power {
         compatible = "zmk,ext-power-generic";
         control-gpios = <&gpio0 15 (GPIO_ACTIVE_LOW)>; // P-channel MOSFET control
         label = "LED Power Control";
         init-delay-ms = <50>;
-    };
-
-    // LED configuration for zmk-poor-mans-led-indicator
-    leds {
-        compatible = "gpio-leds";
-        status = "okay";
-        indicator_led: indicator_led {
-            gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; // P-channel MOSFET control (active low)
-            label = "Status LED";
-        };
     };
     
     vbatt: vbatt {

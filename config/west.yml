@@ -27,9 +27,9 @@ manifest:
       remote: gohanda11
       path: external/zmk-pmw3610-driver
       clone-depth: 1
-    - name: zmk-poor-mans-led-indicator
+    - name: zmk-ws2812-driver
       remote: gohanda11
-      path: external/zmk-poor-mans-led-indicator
+      path: external/zmk-ws2812-driver
       clone-depth: 1
   self:
     path: config
