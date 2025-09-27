@@ -1,7 +1,7 @@
 manifest:
   version: 1.2
   defaults:
-    remote: cormoran
+    remote: zmkfirmware
     revision: main
   remotes:
     - name: zmkfirmware
