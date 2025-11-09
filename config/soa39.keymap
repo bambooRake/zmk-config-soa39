@@ -85,6 +85,17 @@
         };
     };
 
+    behaviors {
+        alt_layer_macro: alt_layer_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <
+                &kp LALT
+                &mo 1    // レイヤー1をモーメンタリで有効化
+            >;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
