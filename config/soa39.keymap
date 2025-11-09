@@ -98,7 +98,7 @@
                 <&mo 4>,
                 <&macro_pause_for_release>,
                 <&macro_release>,
-                <&mo 4 &wait>,
+                <&mo 4>,
                 <&macro_release>,
                 <&kp LALT>;
         };
