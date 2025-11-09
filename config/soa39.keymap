@@ -134,7 +134,7 @@
             >;
         };
 
-        NONE {
+        MOVE {
             bindings = <
 &kp HOME   &kp UP_ARROW    &kp END     &kp PAGE_UP     &kp LEFT_ALT  &kp TAB        &kp PAGE_DOWN   &kp PAGE_DOWN  &kp RIGHT_GUI  &kp RIGHT_ALT
 &kp LEFT   &kp DOWN_ARROW  &kp RIGHT   &kp PAGE_DOWN   &kp LCTRL     &kp LEFT       &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT      &kp RCTRL
