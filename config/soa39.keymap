@@ -91,14 +91,16 @@
             label = "ALT_MO4";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <
-                &macro_press &kp LALT
-                &macro_press &mo 4
-                &macro_pause_for_release
-                &macro_release &mo 4
-                &wait-ms 5
-                &macro_release &kp LALT
-            >;
+            bindings =
+                <&macro_press>,
+                <&kp LALT>,
+                <&macro_press>,
+                <&mo 4>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&mo 4 &wait>,
+                <&macro_release>,
+                <&kp LALT>;
         };
     };
 
@@ -107,10 +109,10 @@
 
         default {
             bindings = <
-&mt LEFT_ALT Q      &kp W             &kp E  &mt LEFT_ALT R      &kp T                    &kp Y      &kp U           &kp I         &kp O      &kp P
-&mt LEFT_CONTROL A  &mt LEFT_GUI S    &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H      &kp J           &kp K         &kp L      &kp SEMICOLON
-&mt LEFT_SHIFT Z    &kp X             &kp C  &mt LEFT_SHIFT V    &kp B                    &kp SLASH  &kp N           &kp M         &kp COMMA  &kp PERIOD
-&kp CAPSLOCK        &alt_layer_macro  &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2      &kp INT_HENKAN  &kp LEFT_ALT  &mo 6
+&mt LEFT_ALT Q      &kp W           &kp E  &mt LEFT_ALT R      &kp T                    &kp Y      &kp U           &kp I         &kp O      &kp P
+&mt LEFT_CONTROL A  &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H      &kp J           &kp K         &kp L      &kp SEMICOLON
+&mt LEFT_SHIFT Z    &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                    &kp SLASH  &kp N           &kp M         &kp COMMA  &kp PERIOD
+&kp CAPSLOCK        &alt_mo4        &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2      &kp INT_HENKAN  &kp LEFT_ALT  &mo 6
             >;
         };
 
