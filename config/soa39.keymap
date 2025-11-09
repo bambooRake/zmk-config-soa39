@@ -106,7 +106,7 @@
             >;
         };
 
-        MOUSE {
+        NUM {
             bindings = <
 &kp GRAVE     &kp EQUAL     &kp SLASH     &kp APOSTROPHE  &kp BACKSLASH  &kp F1   &kp F2   &kp F3            &kp F4             &kp F5
 &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4    &kp NUMBER_5   &kp F6   &kp F7   &kp F8            &kp F9             &kp F10
@@ -115,7 +115,7 @@
             >;
         };
 
-        FUNCTION {
+        MOUSE {
             bindings = <
 &kp LALT         &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &mkp MB5  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &kp RIGHT_ALT
 &mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &mkp MB3  &mkp MB1        &mmv MOVE_DOWN  &mo 5            &mt RCTRL ENTER
@@ -124,18 +124,18 @@
             >;
         };
 
-        NUM {
+        NONE {
             bindings = <
-&kp TAB  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        ARROW {
+        ALT {
             bindings = <
-&trans  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans
+&kp TAB  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans
