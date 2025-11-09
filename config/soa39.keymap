@@ -90,7 +90,7 @@
         alt_layer_macro: alt_layer_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LALT &mo 3>;
+            bindings = <&kp LALT &mo 4>;
         };
     };
 
