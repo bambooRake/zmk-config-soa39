@@ -99,19 +99,19 @@
 
         default {
             bindings = <
-&mt LEFT_ALT Q      &kp W           &kp E             &mt LEFT_ALT R      &kp T           &kp Y            &kp U        &kp I         &kp O               &kp P
-&mt LEFT_CONTROL A  &mt LEFT_GUI S  &kp D             &mt LEFT_CONTROL F  &mt LEFT_GUI G  &kp H            &kp J        &kp K         &kp L               &lt 5 MINUS
-&mt LEFT_SHIFT Z    &kp X           &kp C             &mt LEFT_SHIFT V    &kp B           &kp SLASH        &kp N        &kp M         &kp COMMA           &kp PERIOD
-&kp LEFT_SHIFT      &mt LCTRL TAB   &alt_layer_macro  &lt 3 SPACE         &lt 2 ESCAPE    &lt 3 BACKSPACE  &lt 2 ENTER  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
+&mt LEFT_ALT Q      &kp W             &kp E  &mt LEFT_ALT R      &kp T                    &kp Y      &kp U           &kp I         &kp O               &kp P
+&mt LEFT_CONTROL A  &mt LEFT_GUI S    &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H      &kp J           &kp K         &kp L               &kp SEMICOLON
+&mt LEFT_SHIFT Z    &kp X             &kp C  &mt LEFT_SHIFT V    &kp B                    &kp SLASH  &kp N           &kp M         &kp COMMA           &kp PERIOD
+&kp CAPSLOCK        &alt_layer_macro  &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2      &kp INT_HENKAN  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
             >;
         };
 
         NUM {
             bindings = <
-&kp GRAVE     &kp EQUAL     &kp SLASH     &kp APOSTROPHE  &kp BACKSLASH  &kp F1   &kp F2   &kp F3            &kp F4             &kp F5
-&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4    &kp NUMBER_5   &kp F6   &kp F7   &kp F8            &kp F9             &kp F10
-&kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp NUMBER_0   &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans
-&trans        &trans        &trans        &trans          &trans         &trans   &trans   &trans            &trans
+&kp GRAVE     &kp EQUAL     &kp SLASH     &kp APOSTROPHE  &kp BACKSLASH  &kp F1   &kp F2   &kp F3   &kp F4            &kp F5
+&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4    &kp NUMBER_5   &kp F6   &kp F7   &kp F8   &kp F9            &kp F10
+&kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp NUMBER_0   &kp F11  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans        &trans        &trans        &trans          &trans         &trans   &trans   &trans   &trans
             >;
         };
 
@@ -119,26 +119,26 @@
             bindings = <
 &kp LALT         &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &mkp MB5  &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT  &kp RIGHT_ALT
 &mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &mkp MB3  &mkp MB1        &mmv MOVE_DOWN  &mo 5            &mt RCTRL ENTER
-&kp LSHIFT       &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &mkp MB4  &mkp MB2        &kp DOWN        &kp RIGHT        &kp RIGHT_SHIFT
-&trans           &trans              &trans          &trans           &trans    &trans    &trans          &trans          &trans
+&kp LSHIFT       &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &trans    &mkp MB4        &mkp MB2        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&trans           &trans              &trans          &trans           &trans    &to 0     &trans          &trans          &trans
             >;
         };
 
         NONE {
             bindings = <
-&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         ALT {
             bindings = <
-&kp TAB  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans
+&kp TAB  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
