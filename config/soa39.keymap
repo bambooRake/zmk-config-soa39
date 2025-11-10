@@ -101,30 +101,6 @@
         };
     };
 
-    macros {
-        mo_tap_release_1: mo_tap_release_1 {
-            label = "MO_TAP_RELEASE_1";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <1>;
-            bindings = <
-                &macro_press &mo 0,          // 引数で上書きされる
-                &macro_pause_for_release,    // ホールド中は維持
-                &macro_release &mo 0
-            >;
-        };
-    };
-
-    behaviors {
-        tap_to_hold_mo_fixed: tap_to_hold_mo_fixed {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TAP_TO_HOLD_MO_FIXED";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&to>, <&mo_tap_release_1>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
