@@ -79,6 +79,16 @@
             bindings = <&to 3>;
             key-positions = <17 18>;
         };
+
+        reset {
+            bindings = <&to 0>;
+            key-positions = <34 33>;
+        };
+
+        resetR {
+            bindings = <&to 0>;
+            key-positions = <36 35>;
+        };
     };
 
     macros {
