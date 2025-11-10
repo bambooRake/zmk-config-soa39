@@ -108,11 +108,11 @@
         tap_to_hold_mo: tap_to_hold_mo {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_TO_HOLD_MO";
-            #binding-cells = <2>; // 引数を2つ受け取る
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
 
-            bindings = <&to 0>, <&mo 0>; // ダミー。実際は呼び出し側で上書き
+            bindings = <&to>, <&mo>;
         };
     };
 
