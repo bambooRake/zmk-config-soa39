@@ -64,6 +64,21 @@
             bindings = <&kp EQUAL>;
             key-positions = <22 23>;
         };
+
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <13 12>;
+        };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <3 2>;
+        };
+
+        move {
+            bindings = <&mo 3>;
+            key-positions = <13 32>;
+        };
     };
 
     macros {
@@ -112,7 +127,7 @@
 &mt LEFT_ALT Q      &lt 4 W         &kp E  &mt LEFT_ALT R      &kp T                    &kp Y  &kp U                        &kp I      &kp O       &kp P
 &mt LEFT_CONTROL A  &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H  &kp J                        &kp K      &kp L       &kp SEMICOLON
 &mt LEFT_SHIFT Z    &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                    &kp N  &kp M                        &kp COMMA  &kp PERIOD  &kp SLASH
-&kp CAPSLOCK        &mo 3           &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2  &mt INT_HENKAN INT_MUHENKAN  &mo 3      &mo 6
+&kp CAPSLOCK        &kp LEFT_ALT    &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2  &mt INT_HENKAN INT_MUHENKAN  &mo 3      &mo 6
             >;
         };
 
