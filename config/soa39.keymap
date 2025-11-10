@@ -77,7 +77,7 @@
 
         move {
             bindings = <&mo 3>;
-            key-positions = <13 32>;
+            key-positions = <32 33>;
         };
     };
 
