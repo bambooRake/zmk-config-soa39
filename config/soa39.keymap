@@ -107,9 +107,9 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <1>;
             bindings = <
-                &macro_press &mo,          // 引数で上書きされる
+                &macro_press &mo 0,          // 引数で上書きされる
                 &macro_pause_for_release,    // ホールド中は維持
-                &macro_release &mo
+                &macro_release &mo 0
             >;
         };
     };
