@@ -109,27 +109,27 @@
 
         default {
             bindings = <
-&mt LEFT_ALT Q      &lt 4 W         &kp E  &mt LEFT_ALT R      &kp T                    &kp Y      &kp U                        &kp I  &kp O      &kp P
-&mt LEFT_CONTROL A  &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H      &kp J                        &kp K  &kp L      &kp SEMICOLON
-&mt LEFT_SHIFT Z    &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                    &kp SLASH  &kp N                        &kp M  &kp COMMA  &kp PERIOD
-&kp CAPSLOCK        &mo 3           &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2      &mt INT_HENKAN INT_MUHENKAN  &mo 3  &mo 6
+&mt LEFT_ALT Q      &lt 4 W         &kp E  &mt LEFT_ALT R      &kp T                    &kp Y  &kp U                        &kp I      &kp O       &kp P
+&mt LEFT_CONTROL A  &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G           &kp H  &kp J                        &kp K      &kp L       &kp SEMICOLON
+&mt LEFT_SHIFT Z    &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                    &kp N  &kp M                        &kp COMMA  &kp PERIOD  &kp SLASH
+&kp CAPSLOCK        &mo 3           &mo 2  &lt 1 SPACE         &mt INT_MUHENKAN ESCAPE  &to 2  &mt INT_HENKAN INT_MUHENKAN  &mo 3      &mo 6
             >;
         };
 
         NUM {
             bindings = <
-&mt LEFT_ALT GRAVE       &kp EQUAL              &kp SLASH     &mt LEFT_ALT APOS        &kp BACKSLASH          &kp F1   &kp F2   &kp F3   &kp F4            &kp F5
-&mt LCTRL NUMBER_1       &mt LEFT_GUI NUMBER_2  &kp NUMBER_3  &mt LCTRL NUMBER_4       &mt LEFT_GUI NUMBER_5  &kp F6   &kp F7   &kp F8   &kp F9            &kp F10
-&mt LEFT_SHIFT NUMBER_6  &kp NUMBER_7           &kp NUMBER_8  &mt LEFT_SHIFT NUMBER_9  &kp NUMBER_0           &kp F11  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans                   &trans                 &trans        &trans                   &trans                 &trans   &trans   &trans   &trans
+&mt LEFT_ALT GRAVE       &kp EQUAL              &kp SLASH     &mt LEFT_ALT APOS        &kp BACKSLASH          &kp F1   &kp F2   &kp F3            &kp F4             &kp F5
+&mt LCTRL NUMBER_1       &mt LEFT_GUI NUMBER_2  &kp NUMBER_3  &mt LCTRL NUMBER_4       &mt LEFT_GUI NUMBER_5  &kp F6   &kp F7   &kp F8            &kp F9             &kp F10
+&mt LEFT_SHIFT NUMBER_6  &kp NUMBER_7           &kp NUMBER_8  &mt LEFT_SHIFT NUMBER_9  &kp NUMBER_0           &kp F11  &kp F11  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &none
+&trans                   &trans                 &trans        &trans                   &trans                 &trans   &trans   &trans            &trans
             >;
         };
 
         MOUSE {
             bindings = <
 &kp LALT         &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &mkp MB5  &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
-&mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &mkp MB3  &mkp MB1        &msc SCRL_DOWN  &mo 6            &mt RCTRL ENTER
-&kp LSHIFT       &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &trans    &mkp MB4        &mkp MB2        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &mkp MB3  &mkp MB1        &msc SCRL_DOWN  &mo 5            &mt RCTRL ENTER
+&kp LSHIFT       &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &mkp MB4  &mkp MB2        &none           &kp RIGHT_GUI    &kp RIGHT_SHIFT
 &trans           &trans              &trans          &trans           &trans    &to 0     &trans          &trans          &trans
             >;
         };
@@ -138,17 +138,17 @@
             bindings = <
 &kp HOME   &kp UP_ARROW    &kp END     &kp PAGE_UP     &kp LEFT_ALT  &kp TAB        &kp PAGE_DOWN   &kp PAGE_DOWN  &kp RIGHT_GUI  &kp RIGHT_ALT
 &kp LEFT   &kp DOWN_ARROW  &kp RIGHT   &kp PAGE_DOWN   &kp LCTRL     &kp LEFT       &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT      &kp RCTRL
-&kp ENTER  &kp BACKSPACE   &kp DELETE  &kp LEFT_SHIFT  &kp LEFT_GUI  &kp BACKSPACE  &kp ENTER       &kp END        &kp HOME       &kp RIGHT_SHIFT
+&kp ENTER  &kp BACKSPACE   &kp DELETE  &kp LEFT_SHIFT  &kp LEFT_GUI  &kp BACKSPACE  &kp END         &kp HOME       &kp ENTER      &kp RIGHT_SHIFT
 &trans     &trans          &trans      &trans          &trans        &trans         &trans          &trans         &trans
             >;
         };
 
         ALT {
             bindings = <
-&trans  &trans  &kp TAB  &kp ESCAPE  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp TAB  &kp ESCAPE  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
