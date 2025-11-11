@@ -79,6 +79,16 @@
             bindings = <&to 0>;
             key-positions = <36 35>;
         };
+
+        m1 {
+            bindings = <&kp LG(F11)>;
+            key-positions = <11 10>;
+        };
+
+        m2 {
+            bindings = <&kp LG(F12)>;
+            key-positions = <0 1>;
+        };
     };
 
     macros {
@@ -117,7 +127,7 @@
             bindings = <
 &mt LEFT_ALT GRAVE       &kp EQUAL              &kp SLASH     &mt LEFT_ALT APOS        &kp BACKSLASH          &kp F1   &kp F2   &kp F3            &kp F4             &kp F5
 &mt LCTRL NUMBER_1       &mt LEFT_GUI NUMBER_2  &kp NUMBER_3  &mt LCTRL NUMBER_4       &mt LEFT_GUI NUMBER_5  &kp F6   &kp F7   &kp F8            &kp F9             &kp F10
-&mt LEFT_SHIFT NUMBER_6  &kp NUMBER_7           &kp NUMBER_8  &mt LEFT_SHIFT NUMBER_9  &kp NUMBER_0           &kp F11  &kp F11  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &none
+&mt LEFT_SHIFT NUMBER_6  &kp NUMBER_7           &kp NUMBER_8  &mt LEFT_SHIFT NUMBER_9  &kp NUMBER_0           &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &none
 &trans                   &trans                 &trans        &trans                   &trans                 &trans   &trans   &trans            &trans
             >;
         };
