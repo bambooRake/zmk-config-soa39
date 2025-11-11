@@ -82,12 +82,12 @@
 
         m1 {
             bindings = <&kp LA(LS(F11))>;
-            key-positions = <13 23>;
+            key-positions = <13 3>;
         };
 
         m2 {
             bindings = <&kp LA(LS(F12))>;
-            key-positions = <14 24>;
+            key-positions = <4 14>;
         };
     };
 
