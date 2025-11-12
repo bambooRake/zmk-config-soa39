@@ -89,6 +89,11 @@
             bindings = <&kp RS(RA(F12))>;
             key-positions = <4 14>;
         };
+
+        mo_etc {
+            bindings = <&mo 4>;
+            key-positions = <31 32>;
+        };
     };
 
     macros {
@@ -97,6 +102,13 @@
             #binding-cells = <1>;
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
+        };
+
+        P_IMG: P_IMG {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_ALT &kp N &kp P &kp O &kp D &kp LC(V)>;
+            label = "P_IMG";
         };
     };
 
@@ -150,12 +162,12 @@
             >;
         };
 
-        ALT {
+        etc {
             bindings = <
-&trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &kp TAB  &kp ESCAPE  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &P_IMG  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
