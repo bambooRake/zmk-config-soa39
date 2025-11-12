@@ -91,7 +91,7 @@
         };
 
         mo_etc {
-            bindings = <&mo 4>;
+            bindings = <&sl 4>;
             key-positions = <31 32>;
         };
     };
