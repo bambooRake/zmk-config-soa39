@@ -107,7 +107,11 @@
         P_IMG: P_IMG {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_ALT &kp N &kp P &kp O &kp D &kp LC(V)>;
+            bindings =
+                <&kp LEFT_ALT &kp N &kp P &kp O &kp D>,
+                <&macro_wait_time 1000>,
+                <&kp LC(V)>;
+
             label = "P_IMG";
         };
     };
@@ -164,7 +168,7 @@
 
         etc {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&P_IMG  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &P_IMG  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
