@@ -110,7 +110,7 @@
             bindings =
                 <&kp LEFT_ALT &kp N &kp P &kp O &kp D>,
                 <&macro_wait_time 3000>,
-                <&kp LC(V)>;
+                <&none &kp LC(V)>;
 
             label = "P_IMG";
         };
