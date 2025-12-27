@@ -14,9 +14,9 @@ manifest:
     - name: zmk-feature-non-lipo-battery-management
       remote: sekigon-gonnoc
       revision: main
-    # - name: zmk-pmw3610-driver
-    #   remote: gohanda11
-    #   revision: main
+    - name: zmk-pmw3610-driver
+      remote: gohanda11
+      revision: main
     - name: zmk-ws2812-driver
       remote: gohanda11
       revision: main
