@@ -135,7 +135,7 @@
 &mt LEFT_ALT Q       &kp W           &kp E  &mt LEFT_ALT R      &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
 &mt LEFT_CONTROL A   &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
 &mt LEFT_SHIFT Z     &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
-&mt CAPSLOCK ESCAPE  &lt 4 TAB       &mo 2  &lt 1 SPACE         &mt PRINTSCREEN INS  &kp ENTER  &to 2  &to 3  &to 1
+&mt CAPSLOCK ESCAPE  &mo 3           &mo 2  &lt 1 SPACE         &mt PRINTSCREEN INS  &kp ENTER  &to 2  &to 3  &to 1
             >;
         };
 
@@ -159,10 +159,10 @@
 
         MOVE {
             bindings = <
-&kp HOME   &kp UP_ARROW    &kp END     &kp PAGE_UP    &kp LEFT_ALT    &kp TAB        &kp PAGE_DOWN   &kp PAGE_DOWN  &kp RIGHT_GUI  &kp RIGHT_ALT
-&kp LEFT   &kp DOWN_ARROW  &kp RIGHT   &kp PAGE_DOWN  &kp LCTRL       &kp LEFT       &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT      &kp RCTRL
-&kp ENTER  &kp BACKSPACE   &kp DELETE  &kp LEFT_GUI   &kp LEFT_SHIFT  &kp BACKSPACE  &kp HOME        &kp END        &kp RIGHT_GUI  &kp RIGHT_SHIFT
-&trans     &trans          &trans      &trans         &trans          &trans         &trans          &trans         &trans
+&kp HOME   &kp UP_ARROW    &kp END     &kp PAGE_UP    &kp LEFT_ALT    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
+&kp LEFT   &kp DOWN_ARROW  &kp RIGHT   &kp PAGE_DOWN  &kp LCTRL       &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
+&kp ENTER  &kp BACKSPACE   &kp DELETE  &kp LEFT_GUI   &kp LEFT_SHIFT  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&trans     &trans          &trans      &trans         &trans          &trans         &trans          &trans          &trans
             >;
         };
 
