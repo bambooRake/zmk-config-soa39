@@ -33,7 +33,8 @@
         ws2812_wdg: ws2812_widget {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&none>; // Placeholder - will be replaced by actual WS2812 implementation
+            bindings = <&none>, <&macro_press>;
+ // Placeholder - will be replaced by actual WS2812 implementation
         };
     };
 
@@ -93,6 +94,11 @@
         mo_etc {
             bindings = <&sl 4>;
             key-positions = <31 32>;
+        };
+
+        alt+enter {
+            bindings = <&kp LA(ENTER)>;
+            key-positions = <11 31>;
         };
     };
 
