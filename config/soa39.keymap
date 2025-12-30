@@ -148,7 +148,7 @@
 
         NUM {
             bindings = <
-&mt LEFT_ALT GRAVE    &kp EQUAL         &kp N7  &mt LEFT_ALT N8  &kp N9           &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
+&mt LEFT_ALT GRAVE    &kp SLASH         &kp N7  &mt LEFT_ALT N8  &kp N9           &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
 &mt LCTRL MINUS       &mt LWIN EQUAL    &kp N4  &mt LCTRL N5     &mt LS(LGUI) N6  &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
 &mt LSHIFT BACKSLASH  &kp SINGLE_QUOTE  &kp N1  &mt LSHIFT N2    &kp N3           &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
 &trans                &trans            &kp N0  &trans           &trans           &trans  &trans   &trans   &trans
