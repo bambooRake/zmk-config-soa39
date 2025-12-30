@@ -140,36 +140,36 @@
         default {
             bindings = <
 &mt LEFT_ALT Q       &kp W           &kp E  &mt LEFT_ALT R      &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LEFT_CONTROL A   &mt LEFT_GUI S  &kp D  &mt LEFT_CONTROL F  &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
-&mt LEFT_SHIFT Z     &kp X           &kp C  &mt LEFT_SHIFT V    &kp B                &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
+&mt LSHIFT A         &mt LEFT_GUI S  &kp D  &mt LSHIFT F        &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&mt LCTRL Z          &kp X           &kp C  &mt LEFT_CONTROL V  &kp B                &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
 &mt CAPSLOCK ESCAPE  &mo 3           &mo 2  &lt 1 SPACE         &mt PRINTSCREEN INS  &to 0      &to 3  &to 2  &to 6
             >;
         };
 
         NUM {
             bindings = <
-&mt LEFT_ALT GRAVE    &kp SLASH         &kp N7  &mt LEFT_ALT N8  &kp N9           &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
-&mt LCTRL MINUS       &mt LWIN EQUAL    &kp N4  &mt LCTRL N5     &mt LS(LGUI) N6  &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
-&mt LSHIFT BACKSLASH  &kp SINGLE_QUOTE  &kp N1  &mt LSHIFT N2    &kp N3           &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans                &trans            &kp N0  &trans           &trans           &trans  &trans   &trans   &trans
+&mt LEFT_ALT GRAVE          &kp SLASH         &kp N7  &mt LEFT_ALT N8      &kp N9           &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
+&mt LSHIFT MINUS            &mt LWIN EQUAL    &kp N4  &mt LSHIFT N5        &mt LS(LGUI) N6  &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
+&mt LEFT_CONTROL BACKSLASH  &kp SINGLE_QUOTE  &kp N1  &mt LEFT_CONTROL N2  &kp N3           &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans                      &trans            &kp N0  &trans               &trans           &trans  &trans   &trans   &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&mt LALT ESCAPE  &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
-&mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RCTRL
-&mt LSHIFT DOT   &kp BACKSPACE       &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_SHIFT
-&trans           &trans              &trans          &trans           &trans    &trans          &trans         &trans        &trans
+&mt LALT ESCAPE       &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
+&mt LSHIFT MINUS      &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RSHIFT
+&mt LEFT_CONTROL DOT  &kp BACKSPACE       &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_CONTROL
+&trans                &trans              &trans          &trans           &trans    &trans          &trans         &trans        &trans
             >;
         };
 
         MOVE {
             bindings = <
-&mt LALT TILDE    &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
-&kp LCTRL         &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
-&mt LSHIFT COMMA  &kp DEL                 &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
-&trans            &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
+&mt LALT TILDE          &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
+&kp LSHIFT              &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RSHIFT
+&mt LEFT_CONTROL COMMA  &kp DEL                 &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_CONTROL
+&trans                  &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
             >;
         };
 
