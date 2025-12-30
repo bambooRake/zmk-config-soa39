@@ -166,10 +166,10 @@
 
         MOVE {
             bindings = <
-&mt LALT TILDE  &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
-&kp LCTRL       &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
-&kp LSHIFT      &kp DEL                 &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
-&trans          &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
+&mt LALT TILDE    &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
+&kp LCTRL         &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
+&mt LSHIFT COMMA  &kp DEL                 &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&trans            &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
             >;
         };
 
