@@ -159,7 +159,7 @@
             bindings = <
 &mt LALT ESCAPE  &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
 &mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RCTRL
-&mt LSHIFT DOT   &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_SHIFT
+&mt LSHIFT DOT   &kp BACKSPACE       &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_SHIFT
 &trans           &trans              &trans          &trans           &trans    &trans          &trans         &trans        &trans
             >;
         };
@@ -168,7 +168,7 @@
             bindings = <
 &mt LALT TILDE  &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
 &kp LCTRL       &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
-&kp LSHIFT      &kp BACKSPACE           &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&kp LSHIFT      &kp DEL                 &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
 &trans          &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
             >;
         };
