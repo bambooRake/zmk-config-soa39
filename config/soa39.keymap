@@ -159,7 +159,7 @@
             bindings = <
 &mt LALT ESCAPE  &msc SCRL_LEFT      &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
 &mt LCTRL MINUS  &mt LEFT_GUI ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RCTRL
-&kp LSHIFT       &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_SHIFT
+&mt LSHIFT DOT   &kp BACKSPACE       &kp DELETE      &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RIGHT_SHIFT
 &trans           &trans              &trans          &trans           &trans    &trans          &trans         &trans        &trans
             >;
         };
