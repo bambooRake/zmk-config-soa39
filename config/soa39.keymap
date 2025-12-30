@@ -34,7 +34,8 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&none>, <&macro_press>;
- // Placeholder - will be replaced by actual WS2812 implementation
+
+            // Placeholder - will be replaced by actual WS2812 implementation
         };
     };
 
@@ -165,10 +166,10 @@
 
         MOVE {
             bindings = <
-&kp HOME   &kp UP_ARROW    &kp END     &kp PAGE_UP    &kp LEFT_ALT    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
-&kp LEFT   &kp DOWN_ARROW  &kp RIGHT   &kp PAGE_DOWN  &kp LCTRL       &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
-&kp ENTER  &kp BACKSPACE   &kp DELETE  &kp LEFT_GUI   &kp LEFT_SHIFT  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
-&trans     &trans          &trans      &trans         &trans          &trans         &trans          &trans          &trans
+&kp LALT    &kp TAB                 &kp ESCAPE  &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
+&kp LCTRL   &mt LEFT_WIN LA(ENTER)  &kp LEFT    &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &mo 5            &kp RCTRL
+&kp LSHIFT  &kp BACKSPACE           &kp HOME    &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB4        &kp RIGHT_GUI    &kp RIGHT_SHIFT
+&trans      &trans                  &trans      &trans          &trans         &trans         &trans          &trans          &trans
             >;
         };
 
