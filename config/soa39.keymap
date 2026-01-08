@@ -138,6 +138,8 @@
             label = "ALT_OR_MOVELAYER3";
             #binding-cells = <0>;
             bindings = <&kp LALT>, <&mo 3>;
+
+            tapping-term-ms = <400>;
         };
     };
 
