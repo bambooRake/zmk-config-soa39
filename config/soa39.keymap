@@ -45,12 +45,12 @@
 
         muhennkann {
             bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <2 3>;
+            key-positions = <12 13>;
         };
 
         hennkan {
             bindings = <&kp INT_HENKAN>;
-            key-positions = <13 12>;
+            key-positions = <3 2>;
         };
 
         resetR {
