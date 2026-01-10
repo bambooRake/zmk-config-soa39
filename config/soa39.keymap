@@ -128,6 +128,7 @@
                 <&macro_pause_for_release>,
                 <&macro_wait_time 3000>,
                 <&none>,
+                <&macro_wait_time 0>,
                 <&macro_release>,
                 <&kp LSHIFT>;
 
