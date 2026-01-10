@@ -3,6 +3,18 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+// Tap-dance macro template: 1tap=key, hold=modifier, 2tap=modifier+key
+// Usage: TD_MOD(name, modifier, mod_func, key)
+// Example: TD_MOD(td_q, LEFT_ALT, LA, Q)
+#define TD_MOD(NAME, MOD, MOD_FUNC, KEY) \
+    NAME: NAME { \
+        compatible = "zmk,behavior-tap-dance"; \
+        label = #NAME; \
+        #binding-cells = <0>; \
+        tapping-term-ms = <200>; \
+        bindings = <&mt MOD KEY>, <&kp MOD_FUNC(KEY)>; \
+    };
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
@@ -112,38 +124,12 @@
             tapping-term-ms = <400>;
         };
 
-        // Tap-dance: 1tap=mt, 2tap=modifier+key
-        td_q: td_q {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_Q";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LEFT_ALT Q>, <&kp LA(Q)>;
-        };
-
-        td_a: td_a {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_A";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LSHIFT A>, <&kp LS(A)>;
-        };
-
-        td_z: td_z {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_Z";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LCTRL Z>, <&kp LC(Z)>;
-        };
-
-        td_s: td_s {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_S";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mt LEFT_GUI S>, <&kp LG(S)>;
-        };
+        // Tap-dance: 1tap=key, hold=modifier, 2tap=modifier+key
+        // Generated using TD_MOD macro
+        TD_MOD(td_q, LEFT_ALT, LA, Q)
+        TD_MOD(td_a, LSHIFT, LS, A)
+        TD_MOD(td_z, LCTRL, LC, Z)
+        TD_MOD(td_s, LEFT_GUI, LG, S)
     };
 
     keymap {
