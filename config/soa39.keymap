@@ -111,6 +111,39 @@
 
             tapping-term-ms = <400>;
         };
+
+        // Tap-dance: 1tap=mt, 2tap=modifier+key
+        td_q: td_q {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_Q";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LEFT_ALT Q>, <&kp LA(Q)>;
+        };
+
+        td_a: td_a {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_A";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LSHIFT A>, <&kp LS(A)>;
+        };
+
+        td_z: td_z {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_Z";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LCTRL Z>, <&kp LC(Z)>;
+        };
+
+        td_s: td_s {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_S";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LEFT_GUI S>, <&kp LG(S)>;
+        };
     };
 
     keymap {
@@ -118,9 +151,9 @@
 
         default {
             bindings = <
-&mt LEFT_ALT Q       &kp W               &kp E      &mt LEFT_ALT R      &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LSHIFT A         &mt LEFT_GUI S      &kp D      &mt LSHIFT F        &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
-&mt LCTRL Z          &mt PRINTSCREEN X   &mt INS C  &mt LEFT_CONTROL V  &mt CAPSLOCK B       &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
+&td_q                &kp W               &kp E      &mt LEFT_ALT R      &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
+&td_a                &td_s               &kp D      &mt LSHIFT F        &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&td_z                &mt PRINTSCREEN X   &mt INS C  &mt LEFT_CONTROL V  &mt CAPSLOCK B       &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
 &mt CAPSLOCK ESCAPE  &alt_or_moveLayer3  &mo 2      &lt 1 SPACE         &mt PRINTSCREEN INS  &to 0      &to 3  &to 2  &to 6
             >;
         };
