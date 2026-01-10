@@ -3,19 +3,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// Tap-dance macro template: 1tap=key, hold=modifier, 2tap=modifier+key
-// Usage: TD_MOD(name, modifier, mod_func, key)
-// Example: TD_MOD(td_q, LEFT_ALT, LA, Q)
-
-#define TD_MOD(NAME, MOD, MOD_FUNC, KEY) \
-    NAME: NAME { \
-        compatible = "zmk,behavior-tap-dance"; \
-        label = #NAME; \
-        #binding-cells = <0>; \
-        tapping-term-ms = <200>; \
-        bindings = <&mt MOD KEY>, <&kp MOD_FUNC(KEY)>; \
-    };
-
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
@@ -146,13 +133,6 @@
             tapping-term-ms = <400>;
         };
 
-        // Tap-dance: 1tap=key, hold=modifier, 2tap=modifier+key
-        // Generated using TD_MOD macro
-
-        TD_MOD(td_q, LEFT_ALT, LA, Q)
-        TD_MOD(td_a, LSHIFT, LS, A)
-        TD_MOD(td_z, LCTRL, LC, Z)
-        TD_MOD(td_s, LEFT_GUI, LG, S)
     };
 
     keymap {
