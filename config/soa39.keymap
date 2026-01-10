@@ -45,7 +45,7 @@
 
         muhennkann {
             bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <12 13>;
+            key-positions = <2 3>;
         };
 
         hennkan {
