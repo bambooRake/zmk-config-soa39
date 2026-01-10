@@ -6,6 +6,7 @@
 // Tap-dance macro template: 1tap=key, hold=modifier, 2tap=modifier+key
 // Usage: TD_MOD(name, modifier, mod_func, key)
 // Example: TD_MOD(td_q, LEFT_ALT, LA, Q)
+
 #define TD_MOD(NAME, MOD, MOD_FUNC, KEY) \
     NAME: NAME { \
         compatible = "zmk,behavior-tap-dance"; \
@@ -18,6 +19,7 @@
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
+    bindings = <&sticky_mod>, <&kp>;
 };
 
 &trackball {
@@ -107,14 +109,20 @@
         // Sticky modifier with delayed release
         // Hold: modifier ON, Release: wait 400ms then modifier OFF
         // Usage: &sticky_mod LSHIFT (stackable with other modifiers)
+
         sticky_mod: sticky_mod {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings =
-                <&macro_param_1to1 &macro_press &kp MACRO_PLACEHOLDER>,
+                <&macro_param_1to1>,
+                <&macro_press>,
+                <&kp MACRO_PLACEHOLDER>,
                 <&macro_pause_for_release>,
                 <&macro_wait_time 400>,
-                <&macro_param_1to1 &macro_release &kp MACRO_PLACEHOLDER>;
+                <&macro_param_1to1>,
+                <&macro_release>,
+                <&kp MACRO_PLACEHOLDER>;
+
             label = "STICKY_MOD";
         };
     };
@@ -140,6 +148,7 @@
 
         // Tap-dance: 1tap=key, hold=modifier, 2tap=modifier+key
         // Generated using TD_MOD macro
+
         TD_MOD(td_q, LEFT_ALT, LA, Q)
         TD_MOD(td_a, LSHIFT, LS, A)
         TD_MOD(td_z, LCTRL, LC, Z)
