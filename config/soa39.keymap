@@ -6,6 +6,7 @@
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
+    bindings = <&sk>, <&kp>;
 };
 
 &trackball {
