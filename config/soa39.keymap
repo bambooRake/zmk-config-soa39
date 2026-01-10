@@ -160,10 +160,10 @@
 
         default {
             bindings = <
-&mt LALT Q           &kp W               &kp E      &mt LEFT_ALT R      &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LSHIFT A         &mt LEFT_GUI S      &kp D      &mt LSHIFT F        &mt LEFT_GUI G       &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
-&mt LEFT_CONTROL Z   &mt PRINTSCREEN X   &mt INS C  &mt LEFT_CONTROL V  &mt CAPSLOCK B       &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
-&mt CAPSLOCK ESCAPE  &alt_or_moveLayer3  &mo 2      &lt 1 SPACE         &mt PRINTSCREEN INS  &to 0      &to 3  &to 2  &to 6
+&kp Q                &mt LGUI W          &kp E      &kp R        &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
+&mt LCTRL A          &mt LEFT_ALT S      &kp D      &kp F        &kp G                &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&mt LEFT_CONTROL Z   &mt PRINTSCREEN X   &mt INS C  &kp V        &mt CAPSLOCK B       &kp SLASH  &kp N  &kp M  &kp COMMA  &kp PERIOD
+&mt CAPSLOCK ESCAPE  &alt_or_moveLayer3  &mo 2      &lt 1 SPACE  &mt PRINTSCREEN INS  &to 0      &to 3  &to 2  &to 6
             >;
         };
 
