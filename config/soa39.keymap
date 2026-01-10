@@ -44,37 +44,12 @@
 
         muhennkann {
             bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 12>;
+            key-positions = <12 13>;
         };
 
         hennkan {
             bindings = <&kp INT_HENKAN>;
-            key-positions = <1 2>;
-        };
-
-        move {
-            bindings = <&mo 3>;
-            key-positions = <32 33>;
-        };
-
-        mouseR {
-            bindings = <&to 2>;
-            key-positions = <16 17>;
-        };
-
-        bt {
-            bindings = <&to 6>;
-            key-positions = <37 38>;
-        };
-
-        moveR {
-            bindings = <&to 3>;
-            key-positions = <17 18>;
-        };
-
-        reset {
-            bindings = <&to 0>;
-            key-positions = <34 33>;
+            key-positions = <13 12>;
         };
 
         resetR {
@@ -90,11 +65,6 @@
         m2 {
             bindings = <&kp RS(RA(F12))>;
             key-positions = <4 14>;
-        };
-
-        mo_etc {
-            bindings = <&sl 4>;
-            key-positions = <31 32>;
         };
 
         alt+enter {
