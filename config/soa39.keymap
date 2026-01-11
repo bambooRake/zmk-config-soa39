@@ -180,10 +180,10 @@
 
         MOVE {
             bindings = <
-&kp ESCAPE          &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
-&mt LEFT_CONTROL A  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
-&mt LSHIFT CLEAR    &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
-&trans              &trans          &trans       &trans          &trans            &trans    &trans         &trans              &trans
+&kp ESCAPE              &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
+&mt LEFT_CONTROL CLEAR  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
+&mt LSHIFT CLEAR        &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
+&trans                  &trans          &trans       &trans          &trans            &trans    &trans         &trans              &trans
             >;
         };
 
