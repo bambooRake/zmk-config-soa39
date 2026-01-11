@@ -178,7 +178,7 @@
 
         MOUSE {
             bindings = <
-&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &mkp MB5  &mt_tap END HOME  &kp UP_ARROW  &kp PG_UP      &kp RWIN             &kp ESCAPE
+&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &mkp MB5  &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
 &mt LCTRL MINUS             &mt LALT ENTER   &tp_msc_down_right  &mkp MB1  &mkp MB3  &kp LEFT_ARROW    &kp DOWN      &kp RIGHT      &mt SPACE RIGHT_ALT  &kp RIGHT_CONTROL
 &mt LSHIFT INSERT           &kp BACKSPACE    &mo 5               &mkp MB2  &kp DEL   &trans            &mkp MB1      &kp PAGE_DOWN  &kp PAGE_UP          &kp RSHIFT
 &trans                      &trans           &trans              &trans    &trans    &trans            &trans        &trans         &trans
@@ -187,10 +187,10 @@
 
         MOVE {
             bindings = <
-&kp ESCAPE          &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5       &mkp MB4  &tp_msc_up_left     &kp RWIN             &kp ESCAPE
-&mt LEFT_CONTROL A  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3       &mkp MB1  &tp_msc_down_right  &mt RIGHT_ALT ENTER  &kp RIGHT_CONTROL
-&mt LSHIFT CLEAR    &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &kp BACKSPACE  &kp DEL   &mkp MB2            &mo 5                &kp RSHIFT
-&trans              &trans          &trans       &trans          &trans            &trans         &trans    &trans              &trans
+&kp ESCAPE          &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
+&mt LEFT_CONTROL A  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
+&mt LSHIFT CLEAR    &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
+&trans              &trans          &trans       &trans          &trans            &trans    &trans         &trans              &trans
             >;
         };
 
