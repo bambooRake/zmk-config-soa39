@@ -126,16 +126,6 @@
     };
 
     behaviors {
-        mt_msc: mt_msc {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MT_MSC";
-            bindings = <&sticky_mod>, <&msc>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-        };
-
         tp_msc_down_right: tp_msc_down_right {
             compatible = "zmk,behavior-tap-dance";
             label = "TP_MSC_DOWN_RIGHT";
@@ -170,10 +160,10 @@
 
         default {
             bindings = <
-&kp Q                &mt LGUI W         &kp E      &kp R        &kp T                &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LCTRL A          &mt LEFT_ALT S     &kp D      &kp F        &kp G                &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
-&mt LEFT_SHIFT Z     &mt PRINTSCREEN X  &mt INS C  &kp V        &mt CAPSLOCK B       &kp SLASH  &kp N  &kp M  &kp COMMA  &mt_tap SLASH PERIOD
-&mt CAPSLOCK ESCAPE  &mo 3              &mo 2      &lt 1 SPACE  &mt PRINTSCREEN INS  &to 0      &to 3  &to 2  &to 6
+&mt_tap ESCAPE Q  &mt LGUI W      &kp E               &kp R        &kp T  &kp Y      &kp U  &kp I  &kp O      &kp P
+&mt LCTRL A       &mt LEFT_ALT S  &kp D               &kp F        &kp G  &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X           &mt_tap CAPSLOCK C  &kp V        &kp B  &kp SLASH  &kp N  &kp M  &kp COMMA  &mt_tap SLASH PERIOD
+&kp ESCAPE        &mo 3           &mo 2               &lt 1 SPACE  &to 0  &to 0      &to 3  &to 2  &to 6
             >;
         };
 
@@ -188,19 +178,19 @@
 
         MOUSE {
             bindings = <
-&kp ESCAPE       &mt_msc LEFT_WIN SCRL_LEFT  &tp_msc_up_left     &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
-&mt LCTRL MINUS  &mt LALT ENTER              &tp_msc_down_right  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RIGHT_CONTROL
-&mt LSHIFT Z     &kp BACKSPACE               &mo 5               &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RSHIFT
-&trans           &trans                      &trans              &trans           &trans    &trans          &trans         &trans        &trans
+&kp ESCAPE       &mt LWIN DEL    &tp_msc_up_left     &mkp MB4  &mkp MB5                 &mt_tap END HOME  &kp UP_ARROW  &kp PG_UP  &kp RWIN       &kp ESCAPE
+&mt LCTRL MINUS  &mt LALT ENTER  &tp_msc_down_right  &mkp MB1  &mkp MB3                 &kp LEFT_ARROW    &kp DOWN      &kp RIGHT  &kp RIGHT_ALT  &kp RIGHT_CONTROL
+&mt LSHIFT Z     &kp BACKSPACE   &mo 5               &mkp MB2  &mt_tap PRINTSCREEN INS  &kp DEL           &kp ENTER     &kp SPACE  &trans         &kp RSHIFT
+&trans           &trans          &trans              &trans    &trans                   &trans            &trans        &trans     &trans
             >;
         };
 
         MOVE {
             bindings = <
-&kp ESCAPE          &mt LWIN W      &kp TAB   &kp UP_ARROW    &kp PAGE_UP    &mkp MB5       &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &kp RIGHT_ALT
-&mt LEFT_CONTROL A  &mt LALT GRAVE  &kp LEFT  &kp DOWN_ARROW  &kp RIGHT      &mkp MB3       &mkp MB1        &msc SCRL_DOWN  &kp RIGHT_GUI    &kp RIGHT_CONTROL
-&mt LSHIFT Z        &kp DEL         &kp HOME  &kp END         &kp PAGE_DOWN  &kp BACKSPACE  &mkp MB4        &mkp MB2        &mo 5            &kp RSHIFT
-&trans              &trans          &trans    &trans          &trans         &trans         &trans          &trans          &trans
+&kp ESCAPE          &mt LWIN W      &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5       &mkp MB4  &tp_msc_up_left     &kp RWIN       &kp ESCAPE
+&mt LEFT_CONTROL A  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3       &mkp MB1  &tp_msc_down_right  &kp RIGHT_ALT  &kp RIGHT_CONTROL
+&mt LSHIFT Z        &kp DEL         &kp PAGE_UP  &kp PAGE_DOWN   &kp PAGE_DOWN     &kp BACKSPACE  &mkp MB4  &mkp MB2            &mo 5          &kp RSHIFT
+&trans              &trans          &trans       &trans          &trans            &trans         &trans    &trans              &trans
             >;
         };
 
