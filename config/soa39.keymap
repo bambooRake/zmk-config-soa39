@@ -111,6 +111,17 @@
 
             label = "STICKY_MOD";
         };
+
+        // Single tap key (fires press+release immediately on key down)
+        // Usage: &tap_key A
+        tap_key: tap_key {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TAP_KEY";
+        };
     };
 
     behaviors {
