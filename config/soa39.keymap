@@ -136,6 +136,16 @@
 
             tapping-term-ms = <400>;
         };
+
+        mt_msc: mt_msc {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_MSC";
+            bindings = <&sticky_mod>, <&msc>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
     };
 
     keymap {
@@ -161,10 +171,10 @@
 
         MOUSE {
             bindings = <
-&mt LWIN ESCAPE  &msc SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
-&mt LCTRL MINUS  &mt LALT ENTER  &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RIGHT_CONTROL
-&mt LSHIFT Z     &kp BACKSPACE   &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RSHIFT
-&trans           &trans          &trans          &trans           &trans    &trans          &trans         &trans        &trans
+&kp ESCAPE       &mt_msc LEFT_WIN SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
+&mt LCTRL MINUS  &mt LALT ENTER              &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RIGHT_CONTROL
+&mt LSHIFT Z     &kp BACKSPACE               &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RSHIFT
+&trans           &trans                      &trans          &trans           &trans    &trans          &trans         &trans        &trans
             >;
         };
 
