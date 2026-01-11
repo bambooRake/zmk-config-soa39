@@ -119,24 +119,6 @@
     };
 
     behaviors {
-        lt_to_layer_0: lt_to_layer_0 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-
-        alt_or_moveLayer3: alt_or_moveLayer3 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "ALT_OR_MOVELAYER3";
-            #binding-cells = <0>;
-            bindings = <&kp LALT>, <&mo 3>;
-
-            tapping-term-ms = <400>;
-        };
-
         mt_msc: mt_msc {
             compatible = "zmk,behavior-hold-tap";
             label = "MT_MSC";
