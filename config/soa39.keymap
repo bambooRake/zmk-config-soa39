@@ -67,11 +67,6 @@
             bindings = <&kp RS(RA(F12))>;
             key-positions = <4 14>;
         };
-
-        alt+enter {
-            bindings = <&kp LA(ENTER)>;
-            key-positions = <11 31>;
-        };
     };
 
     macros {
