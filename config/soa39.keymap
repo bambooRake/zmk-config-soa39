@@ -146,6 +146,24 @@
             tapping-term-ms = <200>;
             flavor = "balanced";
         };
+
+        tp_msc_down_right: tp_msc_down_right {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_DOWN_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
+
+            tapping-term-ms = <300>;
+        };
+
+        tp_msc_up_left: tp_msc_up_left {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_UP_LEFT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
+
+            tapping-term-ms = <300>;
+        };
     };
 
     keymap {
@@ -171,10 +189,10 @@
 
         MOUSE {
             bindings = <
-&kp ESCAPE       &mt_msc LEFT_WIN SCRL_LEFT  &msc SCRL_UP    &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
-&mt LCTRL MINUS  &mt LALT ENTER              &msc SCRL_DOWN  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RIGHT_CONTROL
-&mt LSHIFT Z     &kp BACKSPACE               &mo 5           &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RSHIFT
-&trans           &trans                      &trans          &trans           &trans    &trans          &trans         &trans        &trans
+&kp ESCAPE       &mt_msc LEFT_WIN SCRL_LEFT  &tp_msc_up_left     &msc SCRL_RIGHT  &mkp MB5  &kp HOME        &kp PAGE_DOWN  &kp PG_UP     &kp END        &kp RIGHT_ALT
+&mt LCTRL MINUS  &mt LALT ENTER              &tp_msc_down_right  &mkp MB1         &mkp MB3  &kp LEFT_ARROW  &kp DOWN       &kp UP_ARROW  &kp RIGHT      &kp RIGHT_CONTROL
+&mt LSHIFT Z     &kp BACKSPACE               &mo 5               &mkp MB2         &mkp MB4  &kp DEL         &kp ENTER      &kp SPACE     &kp RIGHT_GUI  &kp RSHIFT
+&trans           &trans                      &trans              &trans           &trans    &trans          &trans         &trans        &trans
             >;
         };
 
