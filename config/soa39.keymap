@@ -114,6 +114,7 @@
 
         // Single tap key (fires press+release immediately on key down)
         // Usage: &tap_key A
+
         tap_key: tap_key {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -152,6 +153,16 @@
 
             tapping-term-ms = <300>;
         };
+
+        mt_tap: mt_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_TAP";
+            bindings = <&tap_key>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
     };
 
     keymap {
@@ -168,10 +179,10 @@
 
         NUM {
             bindings = <
-&kp COMMA            &mt LWIN DOT         &kp SINGLE_QUOTE      &kp MINUS  &kp EQUAL  &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
-&mt LEFT_CONTROL N1  &mt LALT N2          &kp N3                &kp N4     &kp N5     &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
-&mt LSHIFT N6        &mt LEFT_BRACKET N7  &mt RIGHT_BRACKET N8  &kp N9     &kp N0     &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans               &trans               &kp BACKSLASH         &trans     &trans     &trans  &trans   &trans   &trans
+&kp COMMA            &mt LWIN DOT             &kp SINGLE_QUOTE          &kp MINUS  &kp EQUAL  &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
+&mt LEFT_CONTROL N1  &mt LALT N2              &kp N3                    &kp N4     &kp N5     &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
+&mt LSHIFT N6        &mt_tap LEFT_BRACKET N7  &mt_tap RIGHT_BRACKET N8  &kp N9     &kp N0     &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans               &trans                   &kp BACKSLASH             &trans     &trans     &trans  &trans   &trans   &trans
             >;
         };
 
