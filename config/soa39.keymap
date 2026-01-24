@@ -106,6 +106,23 @@
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TAP_KEY";
         };
+
+        lm: lm {
+          compatible = "zmk,behavior-macro-two-param";
+          wait-ms = <0>;
+          tap-ms = <0>;
+          #binding-cells = <2>;
+          bindings =
+              <&mo MACRO_PLACEHOLDER>
+            , <&kp MACRO_PLACEHOLDER>
+            , <&mo>
+            , <&kp MACRO_PLACEHOLDER>
+            , <&mo>
+            , <&mo>
+            , <&kp MACRO_PLACEHOLDER>
+            , <&mo>
+            , <&kp MACRO_PLACEHOLDER>;
+        };
     };
 
     behaviors {
