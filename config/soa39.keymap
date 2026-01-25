@@ -62,18 +62,21 @@
             bindings = <&lm 3 LEFT_ALT>;
             key-positions = <2 32>;
             slow-release;
+            timeout-ms = <300>;
         };
 
         tab_ctrl {
             bindings = <&lm 3 LCTRL>;
             key-positions = <2 31>;
             slow-release;
+            timeout-ms = <300>;
         };
 
         tab_gui {
             bindings = <&lm 3 LEFT_GUI>;
             key-positions = <2 33>;
             slow-release;
+            timeout-ms = <300>;
         };
     };
 
