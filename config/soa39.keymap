@@ -57,6 +57,21 @@
             bindings = <&kp RS(RA(F12))>;
             key-positions = <4 14>;
         };
+
+        tab_alt {
+            bindings = <&lm 3 LEFT_ALT>;
+            key-positions = <2 32>;
+        };
+
+        tab_ctrl {
+            bindings = <&lm 3 LCTRL>;
+            key-positions = <2 31>;
+        };
+
+        tab_gui {
+            bindings = <&lm 3 LEFT_GUI>;
+            key-positions = <2 33>;
+        };
     };
 
     macros {
@@ -113,15 +128,17 @@
             tap-ms = <0>;
             #binding-cells = <2>;
             bindings =
-                <&macro_param_1to1>
-              , <&macro_press &mo MACRO_PLACEHOLDER>
-              , <&macro_param_2to1>
-              , <&macro_press &kp MACRO_PLACEHOLDER>
-              , <&macro_pause_for_release>
-              , <&macro_param_2to1>
-              , <&macro_release &kp MACRO_PLACEHOLDER>
-              , <&macro_param_1to1>
-              , <&macro_release &mo MACRO_PLACEHOLDER>;
+                <&macro_param_1to1>,
+                <&macro_press>,
+                <&mo MACRO_PLACEHOLDER &macro_param_2to1>,
+                <&macro_press>,
+                <&kp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_param_2to1>,
+                <&macro_release>,
+                <&kp MACRO_PLACEHOLDER &macro_param_1to1>,
+                <&macro_release>,
+                <&mo MACRO_PLACEHOLDER>;
         };
     };
 
