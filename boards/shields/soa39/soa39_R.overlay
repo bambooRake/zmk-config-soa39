@@ -30,7 +30,9 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&zip_temp_layer 1 700>;
+        // Auto mouse layer: トラックボール操作時にレイヤを 700ms 一時 active 化
+        // 数字はレイヤ index (例: 2 = MOUSE レイヤ)
+        // input-processors = <&zip_temp_layer 2 700>;
 
         scroller {
             layers = <5>;
