@@ -6,16 +6,23 @@ manifest:
       url-base: https://github.com/sekigon-gonnoc
     - name: gohanda11
       url-base: https://github.com/gohanda11
+    - name: badjeff
+      url-base: https://github.com/badjeff
+    - name: iwk7273
+      url-base: https://github.com/iwk7273
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3.0
+      revision: main
       import: app/west.yml
     - name: zmk-feature-non-lipo-battery-management
       remote: sekigon-gonnoc
       revision: main
     - name: zmk-pmw3610-driver
-      remote: gohanda11
+      remote: badjeff
+      revision: main
+    - name: zmk-feature-xy_clipper
+      remote: iwk7273
       revision: main
     - name: zmk-ws2812-driver
       remote: gohanda11

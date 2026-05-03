@@ -9,24 +9,6 @@
     bindings = <&sticky_mod>, <&kp>;
 };
 
-&trackball {
-    //automouse-layer = <1>;
-
-    scroll-layers = <5>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
-};
-
 / {
     behaviors {
         // Temporary WS2812 widget behavior definition until external module is recognized
@@ -37,6 +19,43 @@
             bindings = <&none>, <&macro_press>;
 
             // Placeholder - will be replaced by actual WS2812 implementation
+        };
+
+        tp_msc_down_right: tp_msc_down_right {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_DOWN_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
+
+            tapping-term-ms = <300>;
+        };
+
+        tp_msc_up_left: tp_msc_up_left {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_UP_LEFT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
+
+            tapping-term-ms = <300>;
+        };
+
+        tp_mkp_mb4_mb5: tp_mkp_mb4_mb5 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MKP_MB4_MB5";
+            #binding-cells = <0>;
+            bindings = <&mkp MB4>, <&mkp MB5>;
+
+            tapping-term-ms = <300>;
+        };
+
+        mt_tap: mt_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_TAP";
+            bindings = <&tap_key>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
         };
     };
 
@@ -59,8 +78,8 @@
         };
 
         tab_alt {
-            bindings = <&lm 3 LEFT_ALT>;
-            key-positions = <2 32>;
+            bindings = <&lm 2 LEFT_ALT>;
+            key-positions = <32 4>;
             slow-release;
             timeout-ms = <300>;
         };
@@ -134,45 +153,6 @@
         };
     };
 
-    behaviors {
-        tp_msc_down_right: tp_msc_down_right {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TP_MSC_DOWN_RIGHT";
-            #binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
-
-            tapping-term-ms = <300>;
-        };
-
-        tp_msc_up_left: tp_msc_up_left {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TP_MSC_UP_LEFT";
-            #binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
-
-            tapping-term-ms = <300>;
-        };
-
-        tp_mkp_mb4_mb5: tp_mkp_mb4_mb5 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TP_MKP_MB4_MB5";
-            #binding-cells = <0>;
-            bindings = <&mkp MB4>, <&mkp MB5>;
-
-            tapping-term-ms = <300>;
-        };
-
-        mt_tap: mt_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MT_TAP";
-            bindings = <&tap_key>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -187,16 +167,16 @@
 
         NUM {
             bindings = <
-&kp COMMA            &mt LWIN DOT             &kp SINGLE_QUOTE          &kp MINUS        &kp EQUAL             &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
-&mt LEFT_CONTROL N1  &mt LALT N2              &kp N3                    &kp N4           &mt_tap F5 N5         &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
-&mt LSHIFT N6        &mt_tap LEFT_BRACKET N7  &mt_tap RIGHT_BRACKET N8  &mt_tap SEMI N9  &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans               &trans                   &kp SLASH                 &trans           &trans                &trans  &trans   &trans   &trans
+&kp SLASH            &mt LWIN BACKSLASH  &kp MINUS                &kp SINGLE_QUOTE          &kp EQUAL             &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
+&mt LEFT_CONTROL N1  &mt LALT N2         &mt_tap LEFT_BRACKET N3  &mt_tap RIGHT_BRACKET N4  &mt_tap F5 N5         &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
+&mt LSHIFT N6        &mt_tap COMMA N7    &mt_tap COMMA N8         &mt_tap SEMI N9           &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans               &trans              &trans                   &trans                    &trans                &trans  &trans   &trans   &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &mkp MB5  &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
+&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &kp TAB   &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
 &mt LCTRL MINUS             &mt LALT ENTER   &tp_msc_down_right  &mkp MB1  &mkp MB3  &kp LEFT_ARROW    &kp DOWN      &kp RIGHT      &mt SPACE RIGHT_ALT  &kp RIGHT_CONTROL
 &mt LSHIFT INSERT           &kp BACKSPACE    &mo 5               &mkp MB2  &kp DEL   &trans            &mkp MB1      &kp PAGE_DOWN  &kp PAGE_UP          &kp RSHIFT
 &trans                      &trans           &trans              &trans    &trans    &trans            &trans        &trans         &trans
@@ -205,10 +185,10 @@
 
         MOVE {
             bindings = <
-&kp ESCAPE              &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
-&mt LEFT_CONTROL CLEAR  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
-&mt LSHIFT CLEAR        &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
-&trans                  &trans          &trans       &trans          &trans            &trans    &trans         &trans              &trans
+&kp C_MUTE                    &mt C_BRIGHTNESS_DEC C_BRIGHTNESS_INC  &kp K_APP    &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
+&mt LEFT_CONTROL C_VOLUME_UP  &mt LALT GRAVE                         &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
+&mt LSHIFT C_VOL_DN           &kp BACKSPACE                          &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
+&trans                        &trans                                 &trans       &trans          &trans            &trans    &trans         &trans              &trans
             >;
         };
 

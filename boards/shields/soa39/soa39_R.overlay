@@ -1,4 +1,7 @@
 #include "soa39.dtsi"
+#include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -15,10 +18,27 @@
 };
 
 / {
+    xy_clipper: xy_clipper {
+        compatible = "zmk,input-processor-xy-clipper";
+        #input-processor-cells = <0>;
+        threshold = <20>;
+        invert-x = <0>;
+        invert-y = <0>;
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        input-processors = <&zip_temp_layer 1 700>;
+
+        scroller {
+            layers = <5>;
+            input-processors =
+                <&xy_clipper>,
+                <&zip_xy_to_scroll_mapper>,
+                <&zip_scroll_scaler 2 5>;
+        };
     };
 };
 
@@ -77,10 +97,17 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610";
+        compatible = "pixart,pmw3610-alt";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        evt-type = <2>;  // INPUT_EV_REL
+        x-input-code = <0>;  // INPUT_REL_X
+        y-input-code = <1>;  // INPUT_REL_Y
+        cpi = <600>;
+        swap-xy;
+        force-awake;
+        wakeup-source;
     };
 };
 
