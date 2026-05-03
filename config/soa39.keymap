@@ -38,6 +38,34 @@
 
             // Placeholder - will be replaced by actual WS2812 implementation
         };
+
+        tp_msc_down_right: tp_msc_down_right {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_DOWN_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
+
+            tapping-term-ms = <300>;
+        };
+
+        tp_msc_up_left: tp_msc_up_left {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TP_MSC_UP_LEFT";
+            #binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
+
+            tapping-term-ms = <300>;
+        };
+
+        mt_tap: mt_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_TAP";
+            bindings = <&tap_key>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
     };
 
     combos {
@@ -131,36 +159,6 @@
                 <&kp MACRO_PLACEHOLDER &macro_param_1to1>,
                 <&macro_release>,
                 <&mo MACRO_PLACEHOLDER>;
-        };
-    };
-
-    behaviors {
-        tp_msc_down_right: tp_msc_down_right {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TP_MSC_DOWN_RIGHT";
-            #binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
-
-            tapping-term-ms = <300>;
-        };
-
-        tp_msc_up_left: tp_msc_up_left {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TP_MSC_UP_LEFT";
-            #binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
-
-            tapping-term-ms = <300>;
-        };
-
-        mt_tap: mt_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MT_TAP";
-            bindings = <&tap_key>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
         };
     };
 
