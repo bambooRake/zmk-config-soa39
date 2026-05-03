@@ -87,8 +87,8 @@
         };
 
         tab_alt {
-            bindings = <&lm 3 LEFT_ALT>;
-            key-positions = <2 32>;
+            bindings = <&lm 2 LEFT_ALT>;
+            key-positions = <32 4>;
             slow-release;
             timeout-ms = <300>;
         };
@@ -176,16 +176,16 @@
 
         NUM {
             bindings = <
-&kp COMMA            &mt LWIN DOT             &kp SINGLE_QUOTE          &kp MINUS        &kp EQUAL             &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
-&mt LEFT_CONTROL N1  &mt LALT N2              &kp N3                    &kp N4           &mt_tap F5 N5         &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
-&mt LSHIFT N6        &mt_tap LEFT_BRACKET N7  &mt_tap RIGHT_BRACKET N8  &mt_tap SEMI N9  &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans               &trans                   &kp SLASH                 &trans           &trans                &trans  &trans   &trans   &trans
+&kp SLASH            &mt LWIN BACKSLASH  &kp MINUS                &kp SINGLE_QUOTE          &kp EQUAL             &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
+&mt LEFT_CONTROL N1  &mt LALT N2         &mt_tap LEFT_BRACKET N3  &mt_tap RIGHT_BRACKET N4  &mt_tap F5 N5         &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
+&mt LSHIFT N6        &mt_tap COMMA N7    &mt_tap COMMA N8         &mt_tap SEMI N9           &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans               &trans              &trans                   &trans                    &trans                &trans  &trans   &trans   &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &mkp MB5  &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
+&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &kp TAB   &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
 &mt LCTRL MINUS             &mt LALT ENTER   &tp_msc_down_right  &mkp MB1  &mkp MB3  &kp LEFT_ARROW    &kp DOWN      &kp RIGHT      &mt SPACE RIGHT_ALT  &kp RIGHT_CONTROL
 &mt LSHIFT INSERT           &kp BACKSPACE    &mo 5               &mkp MB2  &kp DEL   &trans            &mkp MB1      &kp PAGE_DOWN  &kp PAGE_UP          &kp RSHIFT
 &trans                      &trans           &trans              &trans    &trans    &trans            &trans        &trans         &trans
@@ -194,10 +194,10 @@
 
         MOVE {
             bindings = <
-&kp ESCAPE              &mt LWIN CLEAR  &kp TAB      &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
-&mt LEFT_CONTROL CLEAR  &mt LALT GRAVE  &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
-&mt LSHIFT CLEAR        &kp BACKSPACE   &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
-&trans                  &trans          &trans       &trans          &trans            &trans    &trans         &trans              &trans
+&kp C_MUTE                    &mt C_BRIGHTNESS_DEC C_BRIGHTNESS_INC  &kp K_APP    &kp UP_ARROW    &mt_tap END HOME  &mkp MB5  &mkp MB4       &tp_msc_up_left     &kp RWIN             &kp ESCAPE
+&mt LEFT_CONTROL C_VOLUME_UP  &mt LALT GRAVE                         &kp LEFT     &kp DOWN_ARROW  &kp RIGHT         &mkp MB3  &mkp MB1       &tp_msc_down_right  &mt RIGHT_ALT SPACE  &kp RIGHT_CONTROL
+&mt LSHIFT C_VOL_DN           &kp BACKSPACE                          &kp PAGE_UP  &kp PAGE_DOWN   &kp DELETE        &trans    &kp BACKSPACE  &mkp MB2            &mo 5                &kp RSHIFT
+&trans                        &trans                                 &trans       &trans          &trans            &trans    &trans         &trans              &trans
             >;
         };
 
