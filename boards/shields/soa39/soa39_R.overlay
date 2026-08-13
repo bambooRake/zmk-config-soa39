@@ -33,7 +33,11 @@
         compatible = "zmk,input-processor-scroll-inertia";
         #input-processor-cells = <0>;
         axis = <1>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
-        layer = <5>;      // SCROLLレイヤー。層OFFで内部状態を即リセット
+        // layer=-1: 層ゲート/層リセットを無効化。&mo 5(モメンタリ)は
+        // フリック直後にキーを離す→層5 OFF で惰性が即殺されるため。
+        // コースト出力は入力チェーンを通さず直接HIDで送るので、層を
+        // 抜けた後も惰性が継続する(stop/減衰/gesture-timeout で自然終了)。
+        layer = <(-1)>;
         scale = <2>;      // 下流 zip_scroll_scaler 2 5 に合わせる
         scale-div = <5>;
 
