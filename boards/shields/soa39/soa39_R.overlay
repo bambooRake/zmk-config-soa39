@@ -107,7 +107,7 @@
         evt-type = <2>;  // INPUT_EV_REL
         x-input-code = <0>;  // INPUT_REL_X
         y-input-code = <1>;  // INPUT_REL_Y
-        cpi = <1200>;  // 感度: 600→1200 (2x)。範囲200-3200/200刻み。効きすぎたら1000、足りなければ1400..へ
+        cpi = <800>;  // 感度。範囲200-3200/200刻み。物理(ピント)調整後に体感で 800 に決定
         swap-xy;
         // force-awake 削除: idle/active切替のたびに PERFORMANCE レジスタが
         // 書き換わり、それがカーソルジッター(モード変化時のブレ)のトリガーに
