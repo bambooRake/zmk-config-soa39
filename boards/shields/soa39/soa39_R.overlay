@@ -45,16 +45,19 @@
         // 既定は 1000CPI/125Hz(8ms)前提。作者の 125Hz→250Hz 値の振り方を
         // 62.5Hz へ外挿(レート半分: tick倍/min-events半分/friction倍/decay→より減衰)。
         tick = <16>;           // 62.5Hz = 16ms (既定8=125Hz)
-        min-events = <5>;      // 既定10。160ms→80msで発動許可(全く発動しない主因)
-        start = <25>;          // 既定40。まず確実に発動させる方向へ下げる
-        move = <45>;           // 既定80。同上
-        decel-samples = <2>;   // 既定3。低レートで減速確定を早める
-        suppress-limit = <25>; // 既定50。レート半分に合わせ半分
-        decay-fast = <980>;    // 既定990。tick少で同じ体感tail長にするため強め
-        decay-slow = <980>;
-        decay-tail = <980>;
-        peak-decay = <980>;    // 既定990
-        friction = <70>;       // 既定35。per-tickなのでtick倍に合わせ倍
+        // === 診断用: 強制発動テスト ===
+        // どんなスクロールでも必ず arm させ、慣性パイプラインが生きているか確認する。
+        // 惰性が出れば(暴走気味でも)閾値調整だけの問題。出なければ構造問題→ログ調査へ。
+        min-events = <3>;      // ほぼ即 arm 許可
+        start = <1>;           // 事実上どんな速度でも発動
+        move = <1>;            // 事実上どんな移動でも発動
+        decel-samples = <2>;
+        suppress-limit = <25>;
+        decay-fast = <990>;    // 減衰ゆるめ=惰性を長く=見えやすく
+        decay-slow = <990>;
+        decay-tail = <990>;
+        peak-decay = <990>;
+        friction = <10>;       // 摩擦弱め=惰性を長く=見えやすく
     };
 
     trackball_listener {
