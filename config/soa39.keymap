@@ -57,6 +57,41 @@
             tapping-term-ms = <200>;
             flavor = "balanced";
         };
+
+        clear_mods: clear_mods {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_release
+                &kp LCTRL &kp LSHIFT &kp LALT &kp LGUI
+                &kp RCTRL &kp RSHIFT &kp RALT &kp RGUI>;
+            label = "CLEAR_MODS";
+        };
+
+        /* 全mod解除 → 引数の言語キーを送出 */
+        lang_clear: lang_clear {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =
+                <&clear_mods>,
+                <&macro_param_1to1>,
+                <&kp MACRO_PLACEHOLDER>;
+            label = "LANG_CLEAR";
+        };
+
+        /* mt_tap と同挙動。hold時に lang_clear(全mod解除+言語キー) を実行 */
+        mt_lang: mt_lang {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_LANG";
+            bindings = <&lang_clear>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
     };
 
     combos {
@@ -158,8 +193,8 @@
 
         default {
             bindings = <
-&mt_tap ESCAPE Q  &mt LGUI W      &kp E               &mt_tap INT4 R  &kp T  &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LCTRL A       &mt LEFT_ALT S  &kp D               &mt_tap INT5 F  &kp G  &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&mt_tap ESCAPE Q  &mt LGUI W      &kp E               &mt_lang INT4 R  &kp T  &kp Y      &kp U  &kp I  &kp O      &kp P
+&mt LCTRL A       &mt LEFT_ALT S  &kp D               &mt_lang INT5 F  &kp G  &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X           &mt_tap CAPSLOCK C  &kp V           &kp B  &kp ENTER  &kp N  &kp M  &kp COMMA  &mt_tap SLASH PERIOD
 &kp ESCAPE        &mo 3           &mo 2               &lt 1 SPACE     &to 0  &to 0      &to 3  &to 2  &to 6
             >;
