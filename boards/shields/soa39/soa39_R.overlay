@@ -34,8 +34,23 @@
         #input-processor-cells = <0>;
         axis = <1>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
         layer = <5>;      // SCROLLレイヤー。層OFFで内部状態を即リセット
-        scale = <2>;
+        scale = <2>;      // 下流 zip_scroll_scaler 2 5 に合わせる
         scale-div = <5>;
+
+        // --- 62.5Hz(16ms)/CPI600 向けチューニング ---
+        // 既定は 1000CPI/125Hz(8ms)前提。作者の 125Hz→250Hz 値の振り方を
+        // 62.5Hz へ外挿(レート半分: tick倍/min-events半分/friction倍/decay→より減衰)。
+        tick = <16>;           // 62.5Hz = 16ms (既定8=125Hz)
+        min-events = <5>;      // 既定10。160ms→80msで発動許可(全く発動しない主因)
+        start = <25>;          // 既定40。まず確実に発動させる方向へ下げる
+        move = <45>;           // 既定80。同上
+        decel-samples = <2>;   // 既定3。低レートで減速確定を早める
+        suppress-limit = <25>; // 既定50。レート半分に合わせ半分
+        decay-fast = <980>;    // 既定990。tick少で同じ体感tail長にするため強め
+        decay-slow = <980>;
+        decay-tail = <980>;
+        peak-decay = <980>;    // 既定990
+        friction = <70>;       // 既定35。per-tickなのでtick倍に合わせ倍
     };
 
     trackball_listener {
