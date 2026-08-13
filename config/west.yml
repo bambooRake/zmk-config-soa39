@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: iwk7273
       url-base: https://github.com/iwk7273
+    - name: mjmjm0101
+      url-base: https://github.com/mjmjm0101
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -27,5 +29,8 @@ manifest:
     - name: zmk-ws2812-driver
       remote: gohanda11
       revision: main
+    - name: zmk-input-processor-scroll-inertia
+      remote: mjmjm0101
+      revision: v0.7.4
   self:
     path: config

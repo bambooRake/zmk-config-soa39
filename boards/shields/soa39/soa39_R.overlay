@@ -26,6 +26,18 @@
         invert-y = <0>;
     };
 
+    // iOS風 慣性スクロール (mjmjm0101/zmk-input-processor-scroll-inertia)
+    // 縦(Y)のみ。SCROLLレイヤー(5)専用。scale/scale-div は下流の
+    // zip_scroll_scaler 2 5 に合わせる (慣性出力と実スクロールの整合)。
+    scroll_inertia_v: scroll_inertia_v {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+        axis = <1>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
+        layer = <5>;      // SCROLLレイヤー。層OFFで内部状態を即リセット
+        scale = <2>;
+        scale-div = <5>;
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
@@ -40,6 +52,7 @@
                 <&xy_clipper>,
                 <&zip_xy_to_scroll_mapper>,
                 <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
+                <&scroll_inertia_v>,
                 <&zip_scroll_scaler 2 5>;
         };
     };
