@@ -109,7 +109,10 @@
         y-input-code = <1>;  // INPUT_REL_Y
         cpi = <600>;
         swap-xy;
-        force-awake;
+        // force-awake 削除: idle/active切替のたびに PERFORMANCE レジスタが
+        // 書き換わり、それがカーソルジッター(モード変化時のブレ)のトリガーに
+        // なっていたため。ハード側の RUN/REST 自動ダウンシフトに任せる方が
+        // 省電力にも有利。
         wakeup-source;
     };
 };
