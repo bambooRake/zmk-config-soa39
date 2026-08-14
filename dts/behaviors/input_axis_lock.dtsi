@@ -1,0 +1,7 @@
+/ {
+    scroll_axis_lock: scroll_axis_lock {
+        compatible = "zmk,input-processor-axis-lock";
+        status = "okay";
+        #input-processor-cells = <0>;
+    };
+};

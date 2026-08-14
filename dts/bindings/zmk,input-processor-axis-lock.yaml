@@ -1,0 +1,36 @@
+description: |
+  Axis lock input processor.
+
+  ジェスチャの動き出しで縦か横かを決め、そのジェスチャが終わる
+  (release-ms 無入力になる) までその軸に固定する。もう一方の軸はゼロにする。
+
+  xy_clipper の置き換えとして、スクロールマッパーより前に置くこと。
+  出力量は accum / threshold で、xy_clipper と同じ計算。
+
+compatible: "zmk,input-processor-axis-lock"
+
+include: ip_zero_param.yaml
+
+properties:
+  threshold:
+    type: int
+    default: 20
+    description: |
+      この蓄積量(生カウント)で 1 単位を出力する。大きいほどスクロールが
+      粗く・鈍くなる。軸を確定する判定にも同じ値を使う。
+
+  release-ms:
+    type: int
+    default: 200
+    description: |
+      この時間 入力が途切れたらジェスチャ終了とみなし、軸固定を解除する。
+      短すぎるとスクロール中に軸が外れ、長すぎると縦の直後に横へ
+      切り替えにくくなる。
+
+  y-bias:
+    type: int
+    default: 1000
+    description: |
+      軸を決める時の Y(縦)の優遇度(x1000)。1000 = 優遇なしで、
+      純粋に動き出しの移動量が大きい方が勝つ。縦を出やすくしたい場合は
+      1200 などに上げる (参考: xy_clipper は 2000 相当の固定優遇だった)。

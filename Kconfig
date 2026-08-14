@@ -13,3 +13,19 @@ config ZMK_INPUT_PROCESSOR_POINTER_INERTIA_INIT_PRIORITY
     int "Pointer inertia input processor init priority"
     depends on ZMK_INPUT_PROCESSOR_POINTER_INERTIA
     default 90
+
+DT_COMPAT_ZMK_INPUT_PROCESSOR_AXIS_LOCK := zmk,input-processor-axis-lock
+
+config ZMK_INPUT_PROCESSOR_AXIS_LOCK
+    bool "Axis lock input processor"
+    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_INPUT_PROCESSOR_AXIS_LOCK))
+    depends on ZMK_POINTING
+    depends on INPUT
+    help
+      ジェスチャの動き出しで縦/横を確定し、そのジェスチャの間その軸に
+      固定する入力プロセッサ。
+
+config ZMK_INPUT_PROCESSOR_AXIS_LOCK_INIT_PRIORITY
+    int "Axis lock input processor init priority"
+    depends on ZMK_INPUT_PROCESSOR_AXIS_LOCK
+    default 90

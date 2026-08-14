@@ -4,6 +4,7 @@
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
 #include <behaviors/input_pointer_inertia.dtsi>
+#include <behaviors/input_axis_lock.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -74,6 +75,9 @@
 };
 
 / {
+    // 未使用。scroller チェーンは &scroll_axis_lock に置き換えた。
+    // xy_clipper はイベントごとに優位軸を選び直す上、Y を 2倍優遇する
+    // (|X| > 2|Y| でないと横が出ない) ため、水平スクロールが実質不可能だった。
     xy_clipper: xy_clipper {
         compatible = "zmk,input-processor-xy-clipper";
         #input-processor-cells = <0>;
@@ -88,7 +92,11 @@
     scroll_inertia_v: scroll_inertia_v {
         compatible = "zmk,input-processor-scroll-inertia";
         #input-processor-cells = <0>;
-        axis = <1>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
+        // 1(縦のみ) から 0(両軸) に変更。単軸モードだとモジュールが
+        // 他軸イベントを event->value = 0 で握り潰すため、水平スクロールが
+        // 完全に死んでいた。上流の &scroll_axis_lock が常にどちらか一方の
+        // 軸しか通さないので、両軸にしても斜めに滑ることはない。
+        axis = <0>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
         // layer=-1: 層ゲート/層リセットを無効化。&mo 5(モメンタリ)は
         // フリック直後にキーを離す→層5 OFF で惰性が即殺されるため。
         // コースト出力は入力チェーンを通さず直接HIDで送るので、層を
@@ -138,7 +146,8 @@
         scroller {
             layers = <5>;
             input-processors =
-                <&xy_clipper>,
+                // 動き出しで縦/横を確定し、ジェスチャ終了まで固定する
+                <&scroll_axis_lock>,
                 <&zip_xy_to_scroll_mapper>,
                 <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
                 <&scroll_inertia_v>,
