@@ -19,7 +19,12 @@ manifest:
       import: app/west.yml
     - name: zmk-feature-non-lipo-battery-management
       remote: sekigon-gonnoc
-      revision: main
+      # main を追従しない: 2026-08-14 の 4f19488 "Fix ADC input channel definition"
+      # で .input_positive が SAADC_CH_PSELP_PSELP_AnalogInput0 -> NRF_SAADC_AIN0 に
+      # 変更されたが、ZMK が使う Zephyr v4.1.0+zmk-fixes には NRF_SAADC_AIN0 が
+      # 存在せずビルドが落ちる (nRF54 世代の命名)。その手前の bf024bb に固定。
+      # 上流が Zephyr 4.1 対応を戻したら revision: main に戻すこと。
+      revision: bf024bb7872917f718a960d804136db5f9b88a31
     - name: zmk-pmw3610-driver
       remote: badjeff
       revision: main
