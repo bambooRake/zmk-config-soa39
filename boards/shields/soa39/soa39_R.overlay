@@ -3,6 +3,7 @@
 #include <dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
 #include <behaviors/input_gestures_accel.dtsi>
+#include <behaviors/input_pointer_inertia.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -19,27 +20,31 @@
 };
 
 // カーソル加速 (oleksandrmaslov/zmk-pointing-acceleration)
-// ボールをゆっくり回した時は素の CPI=400 で精密に、速く弾いた時だけ
+// ボールをゆっくり回した時は素の CPI=200 で精密に、速く弾いた時だけ
 // 倍率を上げて一気に飛ばす。スクロールレイヤ(5)には掛からない
 // (下の scroller 子ノードがマッチすると base の input-processors はスキップされるため)。
 //
-// 速度の目安 (CPI=400 / レポート間隔 16ms=62.5Hz、軸ごとに独立計算):
-//   cps(counts/sec) = |1レポートの移動量| x 62.5 ≒ 400 x 物理速度[inch/s]
-//     1.0 inch/s -> cps  400
-//     5.0 inch/s -> cps 2000
-//     7.5 inch/s -> cps 3000
+// 速度の目安 (CPI=200 / レポート間隔 16ms=62.5Hz、軸ごとに独立計算):
+//   cps(counts/sec) = |1レポートの移動量| x 62.5 ≒ 200 x 物理速度[inch/s]
+//     1.0 inch/s -> cps  200
+//     5.0 inch/s -> cps 1000
+//     7.5 inch/s -> cps 1500
+//
+// 実効CPI: ~1.0 in/s=200 / 2.5 in/s=248 / 5.0 in/s=532 / 7.5 in/s~=900
 &pointer_accel {
     input-type = <INPUT_EV_REL>;
 
-    // 低速側は等倍 (CPI を 400 まで落としてあるのでこれ以上減速させない)
+    // 低速側は等倍 (CPI が既に下限近い 200 なのでこれ以上減速させない)
     min-factor = <1000>;          // 1.000x
-    // 高速側の最大倍率。実効 400 x 3.5 = 1400 CPI 相当
-    max-factor = <3500>;          // 3.500x
+    // 高速側の最大倍率。実効 200 x 4.5 = 900 CPI 相当。
+    // CPI を 400->200 に半減させた分、到達点を保つため倍率は上げてある
+    // (体感の「加速の効き」は 400x3.5=1400 相当から 900 相当へ弱まる)
+    max-factor = <4500>;          // 4.500x
 
     // ここ以下は等倍のまま = 精密操作域 (~1.0 inch/s)
-    speed-threshold = <400>;
+    speed-threshold = <200>;
     // ここで max-factor に到達 (~7.5 inch/s)
-    speed-max = <3000>;
+    speed-max = <1500>;
 
     // 2 = 二次カーブ。閾値直後は緩やかに効き、速度が乗ってから一気に伸びる
     // (1=リニアだと中速域が過敏になりやすい)
@@ -48,6 +53,19 @@
     // 端数(1未満の移動量)を蓄積して次レポートに繰り越す。
     // 低 CPI では切り捨て損失が効くので必須
     track-remainders;
+};
+
+// カーソル慣性 (このリポジトリ内の自作プロセッサ / src/input_processor_pointer_inertia.c)
+// 速く動かして止めた直後だけ、約0.2秒カーソルを滑らせる。
+// &pointer_accel より後ろに置くこと (加速後の速度で滑らせないと
+// 手を離した瞬間に急減速して見えるため)。
+&pointer_inertia {
+    tick-ms = <16>;        // センサーのレポート間隔と一致させる
+    duration-ms = <200>;   // 滑る時間の上限 = 要望の 0.2 秒
+    decay = <790>;         // 16ms x 12.5tick で初速の約5%まで減衰
+    min-speed = <800>;     // 加速後 800counts/sec (生 ~3 inch/s) 未満では発動しない
+    stop = <300>;          // 0.3カウント/tick を下回ったら終了
+    smoothing = <600>;     // 速度推定EMAの新サンプル重み
 };
 
 / {
@@ -103,9 +121,10 @@
         // 数字はレイヤ index (例: 2 = MOUSE レイヤ)
         // input-processors = <&zip_temp_layer 2 700>;
 
-        // カーソル移動時の加速。scroller (layer 5) がマッチしている間は
-        // この base 側はスキップされるので、スクロールには影響しない
-        input-processors = <&pointer_accel>;
+        // カーソル移動時の加速 + 慣性。scroller (layer 5) がマッチしている間は
+        // この base 側はスキップされるので、スクロールには影響しない。
+        // 順序重要: 慣性は加速後の速度を見る必要がある
+        input-processors = <&pointer_accel>, <&pointer_inertia>;
 
         scroller {
             layers = <5>;
@@ -181,9 +200,10 @@
         evt-type = <2>;  // INPUT_EV_REL
         x-input-code = <0>;  // INPUT_REL_X
         y-input-code = <1>;  // INPUT_REL_Y
-        // 感度。範囲200-3200/200刻み。
-        // 600 -> 400: 低速時の精度を稼ぐ。速い時の飛びは &pointer_accel で補う
-        cpi = <400>;
+        // 感度。範囲200-3200/200刻み (300 のような中間値は設定不可)。
+        // 200 = センサーの下限。低速時の精度を最優先し、
+        // 速い時の飛びは &pointer_accel (最大4.5x) で補う
+        cpi = <200>;
         swap-xy;
         // force-awake 削除: idle/active切替のたびに PERFORMANCE レジスタが
         // 書き換わり、それがカーソルジッター(モード変化時のブレ)のトリガーに

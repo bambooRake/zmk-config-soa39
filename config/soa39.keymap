@@ -1,6 +1,11 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+
+// &msc は「速度(単位/秒)」で動く behavior で、既定値 10 は 1秒押して 10ノッチ。
+// tap-dance 経由の単発タップは押下時間が実質0msなので、既定値のままだと
+// 1ノッチも出ない。50 に引き上げ、下の *_burst マクロで押下時間を作る。
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 50
 #include <dt-bindings/zmk/pointing.h>
 
 &mt {
@@ -21,22 +26,66 @@
             // Placeholder - will be replaced by actual WS2812 implementation
         };
 
+        // tap-dance は単発タップと判定した時、binding を「押して即座に離す」
+        // (press と release が同一ハンドラ内・同一タイムスタンプ)。
+        // &msc は押されている間 16ms ごとに速度x16/1000 を積むタイプなので、
+        // 押下時間 0 = 1 tick も回らず、スクロール量が完全にゼロになる。
+        // → マクロの tap-ms で明示的に押下時間を作ってやる必要がある。
+        //   50(単位/秒) x 64ms ≒ 3ノッチ/タップ。
+        msc_down_burst: msc_down_burst {
+            compatible = "zmk,behavior-macro";
+            label = "MSC_DOWN_BURST";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <64>;
+            bindings = <&msc SCRL_DOWN>;
+        };
+
+        msc_up_burst: msc_up_burst {
+            compatible = "zmk,behavior-macro";
+            label = "MSC_UP_BURST";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <64>;
+            bindings = <&msc SCRL_UP>;
+        };
+
+        msc_right_burst: msc_right_burst {
+            compatible = "zmk,behavior-macro";
+            label = "MSC_RIGHT_BURST";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <64>;
+            bindings = <&msc SCRL_RIGHT>;
+        };
+
+        msc_left_burst: msc_left_burst {
+            compatible = "zmk,behavior-macro";
+            label = "MSC_LEFT_BURST";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <64>;
+            bindings = <&msc SCRL_LEFT>;
+        };
+
         tp_msc_down_right: tp_msc_down_right {
             compatible = "zmk,behavior-tap-dance";
             label = "TP_MSC_DOWN_RIGHT";
             #binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_RIGHT>;
+            bindings = <&msc_down_burst>, <&msc_right_burst>;
 
-            tapping-term-ms = <300>;
+            // 300 -> 200: 単発タップはこの時間だけ待ってから発火するので、
+            // 長いとスクロールの反応が鈍く感じる
+            tapping-term-ms = <200>;
         };
 
         tp_msc_up_left: tp_msc_up_left {
             compatible = "zmk,behavior-tap-dance";
             label = "TP_MSC_UP_LEFT";
             #binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_LEFT>;
+            bindings = <&msc_up_burst>, <&msc_left_burst>;
 
-            tapping-term-ms = <300>;
+            tapping-term-ms = <200>;
         };
 
         tp_mkp_mb4_mb5: tp_mkp_mb4_mb5 {

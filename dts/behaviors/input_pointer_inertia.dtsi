@@ -1,0 +1,7 @@
+/ {
+    pointer_inertia: pointer_inertia {
+        compatible = "zmk,input-processor-pointer-inertia";
+        status = "okay";
+        #input-processor-cells = <0>;
+    };
+};

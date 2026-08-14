@@ -1,0 +1,55 @@
+description: |
+  Pointer (cursor) inertia / coasting input processor.
+
+  ボールを速く動かして止めた直後、カーソルを減衰させながら少しだけ滑らせる。
+  ゆっくり動かしている間は min-speed ゲートで発動しないため、精密操作の
+  邪魔にならない。
+
+  加速プロセッサより後ろに置くこと。惰性の速度が画面上の見た目の速度と
+  一致する (加速前の生カウントで滑らせると、離した瞬間に急減速して見える)。
+
+compatible: "zmk,input-processor-pointer-inertia"
+
+include: ip_zero_param.yaml
+
+properties:
+  tick-ms:
+    type: int
+    default: 16
+    description: |
+      惰性の出力周期(ms)。同時に「この時間だけ実イベントが途切れたら
+      ボールが止まった」と判定する猶予でもある。センサーのレポート間隔
+      (CONFIG_PMW3610_ALT_REPORT_INTERVAL_MIN) と揃えるのが基本。
+
+  duration-ms:
+    type: int
+    default: 200
+    description: 惰性の最大継続時間(ms)。ここに達したら速度が残っていても打ち切る。
+
+  decay:
+    type: int
+    default: 790
+    description: |
+      tick ごとの減衰率(x1000)。790 は tick=16ms のとき 200ms で初速の約5%
+      まで落ちる値。大きくするほど長く滑る。
+
+  min-speed:
+    type: int
+    default: 800
+    description: |
+      惰性を発動する最低速度(counts/sec)。これ未満で止めた場合は滑らない。
+      上流に加速プロセッサがある場合、ここでの速度は加速後の値なので注意。
+
+  stop:
+    type: int
+    default: 300
+    description: |
+      終了判定のしきい値。単位は「1 tick あたりの移動カウント x 1000」。
+      300 = 0.3 カウント/tick。
+
+  smoothing:
+    type: int
+    default: 600
+    description: |
+      速度推定の EMA における新サンプルの重み(x1000)。大きいほど直近の
+      動きに追従し、小さいほど滑らかだが反応が鈍る。
