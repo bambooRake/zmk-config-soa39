@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
+#include <behaviors/input_gestures_accel.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -15,6 +16,38 @@
             , <&xiao_d 7 GPIO_ACTIVE_HIGH>
             , <&gpio0 10 GPIO_ACTIVE_HIGH>
             ;
+};
+
+// カーソル加速 (oleksandrmaslov/zmk-pointing-acceleration)
+// ボールをゆっくり回した時は素の CPI=400 で精密に、速く弾いた時だけ
+// 倍率を上げて一気に飛ばす。スクロールレイヤ(5)には掛からない
+// (下の scroller 子ノードがマッチすると base の input-processors はスキップされるため)。
+//
+// 速度の目安 (CPI=400 / レポート間隔 16ms=62.5Hz、軸ごとに独立計算):
+//   cps(counts/sec) = |1レポートの移動量| x 62.5 ≒ 400 x 物理速度[inch/s]
+//     1.0 inch/s -> cps  400
+//     5.0 inch/s -> cps 2000
+//     7.5 inch/s -> cps 3000
+&pointer_accel {
+    input-type = <INPUT_EV_REL>;
+
+    // 低速側は等倍 (CPI を 400 まで落としてあるのでこれ以上減速させない)
+    min-factor = <1000>;          // 1.000x
+    // 高速側の最大倍率。実効 400 x 3.5 = 1400 CPI 相当
+    max-factor = <3500>;          // 3.500x
+
+    // ここ以下は等倍のまま = 精密操作域 (~1.0 inch/s)
+    speed-threshold = <400>;
+    // ここで max-factor に到達 (~7.5 inch/s)
+    speed-max = <3000>;
+
+    // 2 = 二次カーブ。閾値直後は緩やかに効き、速度が乗ってから一気に伸びる
+    // (1=リニアだと中速域が過敏になりやすい)
+    acceleration-exponent = <2>;
+
+    // 端数(1未満の移動量)を蓄積して次レポートに繰り越す。
+    // 低 CPI では切り捨て損失が効くので必須
+    track-remainders;
 };
 
 / {
@@ -33,6 +66,10 @@
         // Auto mouse layer: トラックボール操作時にレイヤを 700ms 一時 active 化
         // 数字はレイヤ index (例: 2 = MOUSE レイヤ)
         // input-processors = <&zip_temp_layer 2 700>;
+
+        // カーソル移動時の加速。scroller (layer 5) がマッチしている間は
+        // この base 側はスキップされるので、スクロールには影響しない
+        input-processors = <&pointer_accel>;
 
         scroller {
             layers = <5>;
@@ -107,7 +144,8 @@
         evt-type = <2>;  // INPUT_EV_REL
         x-input-code = <0>;  // INPUT_REL_X
         y-input-code = <1>;  // INPUT_REL_Y
-        cpi = <600>;
+        // 600 -> 400: 低速時の精度を稼ぐ。速い時の飛びは &pointer_accel で補う
+        cpi = <400>;
         swap-xy;
         force-awake;
         wakeup-source;
