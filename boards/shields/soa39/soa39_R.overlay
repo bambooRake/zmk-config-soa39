@@ -64,11 +64,11 @@
     tick-ms = <16>;        // センサーのレポート間隔と一致させる
     duration-ms = <200>;   // 滑る時間の上限 = 要望の 0.2 秒
     decay = <790>;         // 16ms x 12.5tick で初速の約5%まで減衰
-    // 発動に必要な速度。単位は「加速後の」counts/sec なので、CPI と加速の
-    // 設定を変えたら物理速度での発動点がずれる。CPI 200->400 と
-    // max-factor 4500->2250 の変更に合わせて 800 -> 1300 にスケールし、
-    // 物理で ~2.3 inch/s という発動点を維持している
-    min-speed = <1300>;
+    // 発動に必要な速度 (counts/sec)。上流に加速プロセッサがある場合は
+    // 「加速後の」値になる点に注意。現在は加速を外しているので生の cps。
+    //   cps = 400(CPI) x 物理速度[inch/s]
+    // 900 = 約 2.25 inch/s。ここまでの調整と同じ発動点を維持している
+    min-speed = <900>;
     stop = <300>;          // 0.3カウント/tick を下回ったら終了
     smoothing = <600>;     // 速度推定EMAの新サンプル重み
 };
@@ -126,10 +126,14 @@
         // 数字はレイヤ index (例: 2 = MOUSE レイヤ)
         // input-processors = <&zip_temp_layer 2 700>;
 
-        // カーソル移動時の加速 + 慣性。scroller (layer 5) がマッチしている間は
+        // カーソル移動時の慣性。scroller (layer 5) がマッチしている間は
         // この base 側はスキップされるので、スクロールには影響しない。
-        // 順序重要: 慣性は加速後の速度を見る必要がある
-        input-processors = <&pointer_accel>, <&pointer_inertia>;
+        //
+        // 加速(&pointer_accel)は無効化中。素の CPI 400 一定で動く。
+        // 戻す場合はこの行を下の形にして、&pointer_inertia の min-speed を
+        // 加速後の値 (max-factor 2250 なら 1300) に戻すこと:
+        //   input-processors = <&pointer_accel>, <&pointer_inertia>;
+        input-processors = <&pointer_inertia>;
 
         scroller {
             layers = <5>;
