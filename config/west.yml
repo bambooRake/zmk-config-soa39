@@ -12,6 +12,8 @@ manifest:
       url-base: https://github.com/iwk7273
     - name: oleksandrmaslov
       url-base: https://github.com/oleksandrmaslov
+    - name: mjmjm0101
+      url-base: https://github.com/mjmjm0101
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -34,8 +36,13 @@ manifest:
     - name: zmk-ws2812-driver
       remote: gohanda11
       revision: main
+    # カーソル加速 (通常レイヤのポインタ移動)
     - name: zmk-pointing-acceleration
       remote: oleksandrmaslov
       revision: main
+    # 慣性スクロール (SCROLLレイヤ)
+    - name: zmk-input-processor-scroll-inertia
+      remote: mjmjm0101
+      revision: v0.7.4
   self:
     path: config

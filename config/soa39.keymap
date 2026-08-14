@@ -57,6 +57,41 @@
             tapping-term-ms = <200>;
             flavor = "balanced";
         };
+
+        clear_mods: clear_mods {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_release
+                &kp LCTRL &kp LSHIFT &kp LALT &kp LGUI
+                &kp RCTRL &kp RSHIFT &kp RALT &kp RGUI>;
+            label = "CLEAR_MODS";
+        };
+
+        /* 全mod解除 → 引数の言語キーを送出 */
+        lang_clear: lang_clear {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings =
+                <&clear_mods>,
+                <&macro_param_1to1>,
+                <&kp MACRO_PLACEHOLDER>;
+            label = "LANG_CLEAR";
+        };
+
+        /* mt_tap と同挙動。hold時に lang_clear(全mod解除+言語キー) を実行 */
+        mt_lang: mt_lang {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_LANG";
+            bindings = <&lang_clear>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
     };
 
     combos {
@@ -158,8 +193,8 @@
 
         default {
             bindings = <
-&mt_tap ESCAPE Q  &mt LGUI W      &kp E               &mt_tap INT4 R  &kp T  &kp Y      &kp U  &kp I  &kp O      &kp P
-&mt LCTRL A       &mt LEFT_ALT S  &kp D               &mt_tap INT5 F  &kp G  &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
+&mt_tap ESCAPE Q  &mt LGUI W      &kp E               &mt_lang INT4 R  &kp T  &kp Y      &kp U  &kp I  &kp O      &kp P
+&mt LCTRL A       &mt LEFT_ALT S  &kp D               &mt_lang INT5 F  &kp G  &kp H      &kp J  &kp K  &kp L      &kp SEMICOLON
 &mt LEFT_SHIFT Z  &kp X           &mt_tap CAPSLOCK C  &kp V           &kp B  &kp ENTER  &kp N  &kp M  &kp COMMA  &mt_tap SLASH PERIOD
 &kp ESCAPE        &mo 3           &mo 2               &lt 1 SPACE     &to 0  &to 0      &to 3  &to 2  &to 6
             >;
@@ -169,17 +204,17 @@
             bindings = <
 &kp SLASH            &mt LWIN BACKSLASH  &kp MINUS                &kp SINGLE_QUOTE          &kp EQUAL             &kp F1  &kp F2   &kp F3   &kp F4            &kp F5
 &mt LEFT_CONTROL N1  &mt LALT N2         &mt_tap LEFT_BRACKET N3  &mt_tap RIGHT_BRACKET N4  &mt_tap F5 N5         &kp F6  &kp F7   &kp F8   &kp F9            &kp F10
-&mt LSHIFT N6        &mt_tap COMMA N7    &mt_tap COMMA N8         &mt_tap SEMI N9           &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&mt LSHIFT N6        &mt_tap COMMA N7    &mt_tap DOT N8           &mt_tap SEMI N9           &mt_tap BACKSLASH N0  &trans  &kp F11  &kp F12  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
 &trans               &trans              &trans                   &trans                    &trans                &trans  &trans   &trans   &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &mkp MB4  &kp TAB   &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
-&mt LCTRL MINUS             &mt LALT ENTER   &tp_msc_down_right  &mkp MB1  &mkp MB3  &kp LEFT_ARROW    &kp DOWN      &kp RIGHT      &mt SPACE RIGHT_ALT  &kp RIGHT_CONTROL
-&mt LSHIFT INSERT           &kp BACKSPACE    &mo 5               &mkp MB2  &kp DEL   &trans            &mkp MB1      &kp PAGE_DOWN  &kp PAGE_UP          &kp RSHIFT
-&trans                      &trans           &trans              &trans    &trans    &trans            &trans        &trans         &trans
+&mt_tap PRINTSCREEN ESCAPE  &mt LWIN PERIOD  &tp_msc_up_left     &tp_mkp_mb4_mb5  &kp TAB   &mt_tap END HOME  &kp UP_ARROW  &kp TAB        &kp RWIN             &kp ESCAPE
+&mt LCTRL MINUS             &mt LALT ENTER   &tp_msc_down_right  &mkp MB1         &mkp MB3  &kp LEFT_ARROW    &kp DOWN      &kp RIGHT      &mt SPACE RIGHT_ALT  &kp RIGHT_CONTROL
+&mt LSHIFT INSERT           &kp BACKSPACE    &mo 5               &mkp MB2         &kp DEL   &trans            &mkp MB1      &kp PAGE_DOWN  &kp PAGE_UP          &kp RSHIFT
+&trans                      &trans           &trans              &trans           &trans    &trans            &trans        &trans         &trans
             >;
         };
 

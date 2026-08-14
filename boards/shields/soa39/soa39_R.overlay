@@ -59,6 +59,42 @@
         invert-y = <0>;
     };
 
+    // iOS風 慣性スクロール (mjmjm0101/zmk-input-processor-scroll-inertia)
+    // 縦(Y)のみ。SCROLLレイヤー(5)専用。scale/scale-div は下流の
+    // zip_scroll_scaler 2 5 に合わせる (慣性出力と実スクロールの整合)。
+    scroll_inertia_v: scroll_inertia_v {
+        compatible = "zmk,input-processor-scroll-inertia";
+        #input-processor-cells = <0>;
+        axis = <1>;       // 0=両軸, 1=Y(縦)のみ, 2=X(横)のみ
+        // layer=-1: 層ゲート/層リセットを無効化。&mo 5(モメンタリ)は
+        // フリック直後にキーを離す→層5 OFF で惰性が即殺されるため。
+        // コースト出力は入力チェーンを通さず直接HIDで送るので、層を
+        // 抜けた後も惰性が継続する(stop/減衰/gesture-timeout で自然終了)。
+        layer = <(-1)>;
+        scale = <2>;      // 下流 zip_scroll_scaler 2 5 に合わせる
+        scale-div = <5>;
+
+        // --- 62.5Hz(16ms)/CPI600 向けチューニング ---
+        // NOTE: CPI は 400 に変更済み。下の閾値は CPI600 前提なので、
+        //       診断用の強制発動を解除する際は start/move を再調整すること。
+        // 既定は 1000CPI/125Hz(8ms)前提。作者の 125Hz→250Hz 値の振り方を
+        // 62.5Hz へ外挿(レート半分: tick倍/min-events半分/friction倍/decay→より減衰)。
+        tick = <16>;           // 62.5Hz = 16ms (既定8=125Hz)
+        // === 診断用: 強制発動テスト ===
+        // どんなスクロールでも必ず arm させ、慣性パイプラインが生きているか確認する。
+        // 惰性が出れば(暴走気味でも)閾値調整だけの問題。出なければ構造問題→ログ調査へ。
+        min-events = <3>;      // ほぼ即 arm 許可
+        start = <1>;           // 事実上どんな速度でも発動
+        move = <1>;            // 事実上どんな移動でも発動
+        decel-samples = <2>;
+        suppress-limit = <25>;
+        decay-fast = <990>;    // 減衰ゆるめ=惰性を長く=見えやすく
+        decay-slow = <990>;
+        decay-tail = <990>;
+        peak-decay = <990>;
+        friction = <10>;       // 摩擦弱め=惰性を長く=見えやすく
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
@@ -77,6 +113,7 @@
                 <&xy_clipper>,
                 <&zip_xy_to_scroll_mapper>,
                 <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>,
+                <&scroll_inertia_v>,
                 <&zip_scroll_scaler 2 5>;
         };
     };
@@ -144,10 +181,14 @@
         evt-type = <2>;  // INPUT_EV_REL
         x-input-code = <0>;  // INPUT_REL_X
         y-input-code = <1>;  // INPUT_REL_Y
+        // 感度。範囲200-3200/200刻み。
         // 600 -> 400: 低速時の精度を稼ぐ。速い時の飛びは &pointer_accel で補う
         cpi = <400>;
         swap-xy;
-        force-awake;
+        // force-awake 削除: idle/active切替のたびに PERFORMANCE レジスタが
+        // 書き換わり、それがカーソルジッター(モード変化時のブレ)のトリガーに
+        // なっていたため。ハード側の RUN/REST 自動ダウンシフトに任せる方が
+        // 省電力にも有利。
         wakeup-source;
     };
 };
