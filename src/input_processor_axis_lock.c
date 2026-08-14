@@ -84,16 +84,25 @@ static int al_handle_event(const struct device *dev, struct input_event *event, 
 
     if (data->locked == LOCK_NONE) {
         int32_t ax = abs(data->accum_x);
-        int32_t ay = (int32_t)(((int64_t)abs(data->accum_y) * cfg->y_bias) / 1000);
+        int32_t ay = abs(data->accum_y);
 
+        /* 発動判定にはバイアスを掛けない。掛けてしまうと y-bias を動かした
+         * だけで「動き出しに必要な移動量」まで一緒にずれてしまうため。 */
         if (ax < cfg->threshold && ay < cfg->threshold) {
             /* まだどちらも閾値未満。蓄積だけしてこのイベントは無出力 */
             return 0;
         }
 
-        data->locked = (ay >= ax) ? LOCK_Y : LOCK_X;
-        LOG_DBG("axis_lock: locked to %s (ax=%d ay=%d)", data->locked == LOCK_Y ? "Y" : "X", ax,
-                ay);
+        /* 優劣の比較にだけバイアスを掛ける。
+         * Y が勝つ条件は  y_bias/1000 * |Y| >= |X|  すなわち |X|/|Y| <= y_bias/1000。
+         * 垂直からの境界角 = atan(y_bias/1000):
+         *   1000 -> 45.0 度 (中立)  /  800 -> 38.7 度  /  700 -> 35.0 度
+         * 値を下げるほど横が取りやすくなる。 */
+        int32_t ay_weighted = (int32_t)(((int64_t)ay * cfg->y_bias) / 1000);
+
+        data->locked = (ay_weighted >= ax) ? LOCK_Y : LOCK_X;
+        LOG_DBG("axis_lock: locked to %s (ax=%d ay=%d ay_w=%d)",
+                data->locked == LOCK_Y ? "Y" : "X", ax, ay, ay_weighted);
     }
 
     /* 固定軸から出力し、もう一方の蓄積は捨て続ける */
